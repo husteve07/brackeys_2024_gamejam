@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://mio4pmth65cv"]
+
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_3c8j0"]
+
+[node name="LaserBaseClass" type="Node2D"]
+script = ExtResource("1_3c8j0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

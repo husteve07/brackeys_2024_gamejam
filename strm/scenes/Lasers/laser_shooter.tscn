@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://drlw5igjodtwi"]
+
+[ext_resource type="Texture2D" uid="uid://rmdclpkydn4c" path="res://assets/place_holder_assets/ph_enemy.png" id="1_bsony"]
+[ext_resource type="Script" path="res://scripts/laser_shooter.gd" id="1_e7lyc"]
+
+[node name="LaserShooter" type="Node2D"]
+script = ExtResource("1_e7lyc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bsony")
+offset = Vector2(0, -32)

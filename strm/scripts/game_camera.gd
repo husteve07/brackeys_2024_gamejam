@@ -10,9 +10,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	aquire_target()
-	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 10));
+	#camera smoothing, framerate ind. lerping
+	global_position = global_position.lerp(target_position, 1.0 - exp(-delta * 15));
 
 
+#aquire player position
 func aquire_target():
 	var player_nodes = get_tree().get_nodes_in_group("player")
 	if player_nodes.size() > 0:
