@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdi8noihdpgad"]
+[gd_scene load_steps=4 format=3 uid="uid://bdi8noihdpgad"]
 
+[ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="1_fbqhr"]
 [ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="1_hkcwq"]
+[ext_resource type="Texture2D" uid="uid://bltnwyvsho4r8" path="res://assets/place_holder_assets/ph_player.png" id="3_17ox7"]
 
 [node name="Main" type="Node"]
 
+[node name="GameCamera" parent="." instance=ExtResource("1_fbqhr")]
+
 [node name="Player" parent="." instance=ExtResource("1_hkcwq")]
+position = Vector2(151, 129)
+
+[node name="reference obj" type="Sprite2D" parent="."]
+position = Vector2(153, 188)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_17ox7")
