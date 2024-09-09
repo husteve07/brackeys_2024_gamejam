@@ -1,6 +1,6 @@
 extends Node
 
-signal taken_damage(damage: int)
+signal update_health(current_health_percentage: float)
 signal dead
 
 @export var current_health = 100
@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 
 
 func take_damage(damage: int):
-	#update UI taken_damage.emit(damage);
+	#update UI update_health.emit(clampf(current_health/max_heath, 0, max_health));
 	current_health = clampi(current_health  - damage, 0, max_health)
 	print("current Health: " + str(current_health))
 	if current_health == 0:

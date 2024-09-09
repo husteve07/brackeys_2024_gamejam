@@ -4,3 +4,5 @@
 
 [node name="HealthComponent" type="Node"]
 script = ExtResource("1_m763d")
+current_health = 10000
+max_health = 10000

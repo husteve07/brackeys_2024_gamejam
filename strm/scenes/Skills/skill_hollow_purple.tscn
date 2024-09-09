@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpcjpw26emuoo"]
+
+[ext_resource type="PackedScene" uid="uid://bch8gyomdwere" path="res://scenes/Skills/skill_base.tscn" id="1_j4rnq"]
+
+[node name="SkillHollowPurple" instance=ExtResource("1_j4rnq")]
+skill_name = "Hollow Purple"
