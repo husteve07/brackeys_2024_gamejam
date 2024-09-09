@@ -19,3 +19,6 @@ texture = ExtResource("3_17ox7")
 
 [node name="LaserShooter" parent="." instance=ExtResource("4_q7egq")]
 position = Vector2(339, 147)
+
+[node name="LaserShooter2" parent="." instance=ExtResource("4_q7egq")]
+position = Vector2(349, 262)

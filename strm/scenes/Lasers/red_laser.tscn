@@ -1,9 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4bf8kk8ivuow"]
+[gd_scene load_steps=2 format=3 uid="uid://b4bf8kk8ivuow"]
 
 [ext_resource type="PackedScene" uid="uid://mio4pmth65cv" path="res://scenes/Lasers/laser.tscn" id="1_3a88r"]
-[ext_resource type="Texture2D" uid="uid://djxv8bojrgwv2" path="res://assets/place_holder_assets/bullet.png" id="2_hccdq"]
 
 [node name="RedLaser" instance=ExtResource("1_3a88r")]
-
-[node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_hccdq")
+laser_name = "RedLaser"
+damage = 10
