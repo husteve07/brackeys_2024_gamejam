@@ -2,7 +2,7 @@ extends Node2D
 
 # Preload the red and purple laser scenes
 var RedLaserScene = preload("res://scenes/Lasers/red_laser.tscn")
-var PurpleLaserScene = preload("res://scenes/Lasers/purple_laser.tscn")
+var PurpleLaserScene = preload("res://scenes/Lasers/blue_laser.tscn")
 
 func _ready():
 	#Spawn a laser every 2 seconds
