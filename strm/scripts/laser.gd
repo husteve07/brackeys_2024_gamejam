@@ -7,6 +7,18 @@ class_name Laser
 
 var direction = Vector2.ZERO
 
+func _ready() -> void:
+	$Area2D.area_entered.connect(on_area_entered_player)
+	
+
+func on_area_entered_player(other_area:Area2D):
+	print('collision')
+	if !other_area.get_collision_layer_value(1):
+		print("not player")
+		return
+	queue_free()
+
+
 func _process(delta):
 	position += direction * speed * delta
 

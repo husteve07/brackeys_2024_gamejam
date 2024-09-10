@@ -628,7 +628,7 @@ nodes/run/node = SubResource("AnimationNodeBlendSpace1D_r46b4")
 nodes/run/position = Vector2(386.62, 304.19)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64qdf"]
-radius = 30.0
+radius = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aywu1"]
 radius = 100.0

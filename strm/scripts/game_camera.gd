@@ -2,12 +2,12 @@ extends Camera2D
 
 var target_position = Vector2.ZERO
 
-# Called when the node enters the scene tree for the first time.
+# makes current camera the default cam
 func _ready() -> void:
 	make_current();
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	aquire_target()
 	#camera smoothing, framerate ind. lerping
