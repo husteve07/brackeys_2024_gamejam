@@ -76,7 +76,6 @@ func use_blue_laser_energy(cost: int) -> bool:
 #Recieves energy, BroadCasts updated energy on UI delegates
 #add 1 energy (clamped) to the laser gauge type specified
 # Input: receive_laser: Laser_sceneObject, desc: laser gauge type to add to
-
 func receive_laser_energy(receive_laser: Laser): #should return bool
 	if receive_laser.get_laser_name() == "BlueLaser":
 		blue_energy += 1;

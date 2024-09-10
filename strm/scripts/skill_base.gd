@@ -11,6 +11,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+#dummy activate function
+func activate()->bool:
+	print(get_skill_name() + " Activing")
+	return true
+	
 
-func get_skill_name():
+#helper func
+func get_skill_name() -> String:
 	return skill_name
