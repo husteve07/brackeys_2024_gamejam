@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://tebn675nbfjj"]
+[gd_scene load_steps=36 format=3 uid="uid://tebn675nbfjj"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uxivh"]
 [ext_resource type="PackedScene" uid="uid://c3mixyx047gv5" path="res://scenes/components/health_component.tscn" id="2_hv22u"]
 [ext_resource type="PackedScene" uid="uid://wbaeiurjl3th" path="res://scenes/components/combat_component.tscn" id="3_xt1u5"]
+[ext_resource type="Script" path="res://scripts/animation_component.gd" id="4_pc8c2"]
 [ext_resource type="Texture2D" uid="uid://cnl1eeilw2g84" path="res://assets/player/cloud_loop.png" id="4_vygvp"]
 [ext_resource type="Texture2D" uid="uid://cah1rw7feg6a2" path="res://assets/player/idle_top.png" id="5_r2pom"]
 [ext_resource type="Texture2D" uid="uid://cotlpvub360ys" path="res://assets/player/idle_bot.png" id="6_f4ow4"]
@@ -589,6 +590,16 @@ _data = {
 "run_right": SubResource("Animation_72o27")
 }
 
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_nxxcj"]
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_56u1u"]
 animation = &"idle_left"
 
@@ -616,11 +627,15 @@ blend_point_1/pos = 1.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bmg0q"]
+graph_offset = Vector2(-96, 84.4545)
+nodes/Transition/node = SubResource("AnimationNodeTransition_nxxcj")
+nodes/Transition/position = Vector2(600, 140)
 nodes/idle/node = SubResource("AnimationNodeBlendSpace1D_2gvua")
-nodes/idle/position = Vector2(520, 100)
+nodes/idle/position = Vector2(340, 100)
 nodes/output/position = Vector2(900, 160)
 nodes/run/node = SubResource("AnimationNodeBlendSpace1D_r46b4")
-nodes/run/position = Vector2(386.62, 304.19)
+nodes/run/position = Vector2(340, 240)
+node_connections = [&"Transition", 0, &"idle", &"Transition", 1, &"run", &"output", 0, &"Transition"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64qdf"]
 radius = 28.0
@@ -639,31 +654,35 @@ script = ExtResource("1_uxivh")
 
 [node name="CombatComponent" parent="." instance=ExtResource("3_xt1u5")]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Animation Component" type="Node2D" parent="."]
 position = Vector2(0, -32)
+script = ExtResource("4_pc8c2")
 
-[node name="BOT" type="Sprite2D" parent="Node2D"]
+[node name="BOT" type="Sprite2D" parent="Animation Component"]
 texture = ExtResource("6_f4ow4")
 hframes = 8
 
-[node name="TOP" type="Sprite2D" parent="Node2D"]
+[node name="TOP" type="Sprite2D" parent="Animation Component"]
 texture = ExtResource("5_r2pom")
 hframes = 8
 
-[node name="CLOUDS" type="AnimatedSprite2D" parent="Node2D"]
+[node name="CLOUDS" type="AnimatedSprite2D" parent="Animation Component"]
 sprite_frames = SubResource("SpriteFrames_echn3")
 autoplay = "default"
 frame_progress = 0.290752
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation Component"]
 libraries = {
 "": SubResource("AnimationLibrary_smvd6")
 }
 autoplay = "idle_left"
 
-[node name="AnimationTree" type="AnimationTree" parent="Node2D"]
+[node name="AnimationTree" type="AnimationTree" parent="Animation Component"]
 tree_root = SubResource("AnimationNodeBlendTree_bmg0q")
 anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "idle"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
 parameters/idle/blend_position = 0.166
 parameters/run/blend_position = 1.898
 

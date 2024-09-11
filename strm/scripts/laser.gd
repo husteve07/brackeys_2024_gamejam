@@ -17,7 +17,6 @@ func on_area_entered_player(other_area:Area2D):
 		return
 	queue_free()
 
-
 func _process(delta):
 	position += direction * speed * delta
 
