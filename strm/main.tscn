@@ -3,28 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="1_fbqhr"]
 [ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="1_hkcwq"]
 [ext_resource type="Texture2D" uid="uid://bltnwyvsho4r8" path="res://assets/place_holder_assets/ph_player.png" id="3_17ox7"]
-[ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/laser_shooter.tscn" id="4_q7egq"]
+[ext_resource type="PackedScene" uid="uid://osxlc6lj6jy4" path="res://scenes/Lasers/complex_lasershooters/spiral_laser_shooter.tscn" id="5_ans17"]
 
 [node name="Main" type="Node"]
 
 [node name="GameCamera" parent="." instance=ExtResource("1_fbqhr")]
 
 [node name="Player" parent="." instance=ExtResource("1_hkcwq")]
-position = Vector2(274, 194)
+position = Vector2(-352, -139)
 
 [node name="reference obj" type="Sprite2D" parent="."]
 position = Vector2(51, 133)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_17ox7")
 
-[node name="LaserShooter4" parent="." instance=ExtResource("4_q7egq")]
-position = Vector2(68, 69)
-
-[node name="LaserShooter6" parent="." instance=ExtResource("4_q7egq")]
-position = Vector2(79, 266)
-
-[node name="LaserShooter3" parent="." instance=ExtResource("4_q7egq")]
-position = Vector2(527, 85)
-
-[node name="LaserShooter2" parent="." instance=ExtResource("4_q7egq")]
-position = Vector2(537, 292)
+[node name="SpiralLaserShooter" parent="." instance=ExtResource("5_ans17")]
+position = Vector2(445, 275)
+num_of_lasers_to_shoot = 40
+ccw = false
+range_of_spiral_deg = 360

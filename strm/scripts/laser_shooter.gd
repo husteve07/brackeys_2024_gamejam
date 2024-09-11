@@ -1,4 +1,7 @@
 extends Node2D
+class_name LaserShooter
+
+@export var firing_time_interval = 2.0
 
 # Preload the red and purple laser scenes
 var RedLaserScene = preload("res://scenes/Lasers/red_laser.tscn")
@@ -7,7 +10,7 @@ var BlueLaserScene = preload("res://scenes/Lasers/blue_laser.tscn")
 func _ready():
 	#Spawn a laser every 2 seconds
 	var laser_spawn_timer = Timer.new()
-	laser_spawn_timer.wait_time = 2.0
+	laser_spawn_timer.wait_time = firing_time_interval
 	laser_spawn_timer.connect("timeout", Callable(self, "spawn_laser"))
 	add_child(laser_spawn_timer)
 	laser_spawn_timer.start()

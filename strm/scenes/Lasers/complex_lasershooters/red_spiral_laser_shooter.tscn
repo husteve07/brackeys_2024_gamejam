@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcktk5vi51lrd"]
+
+[ext_resource type="PackedScene" uid="uid://osxlc6lj6jy4" path="res://scenes/Lasers/complex_lasershooters/spiral_laser_shooter.tscn" id="1_yy243"]
+
+[node name="RedSpiralLaserShooter" instance=ExtResource("1_yy243")]

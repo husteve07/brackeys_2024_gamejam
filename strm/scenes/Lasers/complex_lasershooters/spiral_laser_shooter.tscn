@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://osxlc6lj6jy4"]
+
+[ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="1_nxi2n"]
+[ext_resource type="Script" path="res://scripts/spiral_laser_shooter.gd" id="2_dymu5"]
+
+[node name="SpiralLaserShooter" instance=ExtResource("1_nxi2n")]
+script = ExtResource("2_dymu5")
+num_of_lasers_to_shoot = 5
+ccw = true
+range_of_spiral_deg = 180

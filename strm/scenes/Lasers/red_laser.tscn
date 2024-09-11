@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4bf8kk8ivuow"]
+[gd_scene load_steps=10 format=3 uid="uid://b4bf8kk8ivuow"]
 
 [ext_resource type="PackedScene" uid="uid://mio4pmth65cv" path="res://scenes/Lasers/laser.tscn" id="1_3a88r"]
 [ext_resource type="Texture2D" uid="uid://dws1hmdeiwr7t" path="res://assets/projectiles/bullet2.png" id="2_6dit6"]
@@ -46,6 +46,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_oyirk"]
+radius = 12.0
+
 [node name="RedLaser" instance=ExtResource("1_3a88r")]
 laser_name = "RedLaser"
 damage = 10
@@ -53,3 +56,6 @@ damage = 10
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_quvp6")
 frame_progress = 0.830904
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_oyirk")
