@@ -14,13 +14,13 @@ tile_map_data = PackedByteArray("AAAAAP//AgACAAMAAAAIAP//AgAEAAAAAAABAP//AgAEAAI
 [node name="GameCamera" parent="." instance=ExtResource("1_fbqhr")]
 
 [node name="Player" parent="." instance=ExtResource("1_hkcwq")]
-position = Vector2(-352, -139)
+position = Vector2(241, 151)
 
 [node name="SpiralLaserShooter" parent="." instance=ExtResource("5_ans17")]
 position = Vector2(445, 275)
-num_of_lasers_to_shoot = 40
+num_of_lasers_to_shoot = 20
 ccw = false
-range_of_spiral_deg = 360
+range_of_spiral_deg = 90
 
 [node name="LaserShooter4" parent="." instance=ExtResource("4_q7egq")]
 position = Vector2(68, 69)
