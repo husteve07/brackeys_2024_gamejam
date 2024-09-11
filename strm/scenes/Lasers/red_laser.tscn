@@ -1,7 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4bf8kk8ivuow"]
+[gd_scene load_steps=9 format=3 uid="uid://b4bf8kk8ivuow"]
 
 [ext_resource type="PackedScene" uid="uid://mio4pmth65cv" path="res://scenes/Lasers/laser.tscn" id="1_3a88r"]
+[ext_resource type="Texture2D" uid="uid://dws1hmdeiwr7t" path="res://assets/projectiles/bullet2.png" id="2_6dit6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooh5n"]
+atlas = ExtResource("2_6dit6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2fsq"]
+atlas = ExtResource("2_6dit6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6nwj"]
+atlas = ExtResource("2_6dit6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18fxo"]
+atlas = ExtResource("2_6dit6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pd0k"]
+atlas = ExtResource("2_6dit6")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_quvp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ooh5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2fsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6nwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18fxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pd0k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="RedLaser" instance=ExtResource("1_3a88r")]
 laser_name = "RedLaser"
 damage = 10
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_quvp6")
+frame_progress = 0.830904
