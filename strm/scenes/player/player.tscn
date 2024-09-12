@@ -648,6 +648,7 @@ radius = 5.0
 height = 36.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
 collision_mask = 7
 script = ExtResource("1_uxivh")
 
@@ -704,6 +705,7 @@ position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_aywu1")
 
 [node name="PhysicalCollider" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_uvplp")

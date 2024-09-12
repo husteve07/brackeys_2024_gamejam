@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://drlw5igjodtwi"]
+[gd_scene load_steps=18 format=3 uid="uid://drlw5igjodtwi"]
 
 [ext_resource type="Script" path="res://scripts/laser_shooter.gd" id="1_ihw53"]
 [ext_resource type="Texture2D" uid="uid://cw3fxdrvhanrk" path="res://assets/enemy/enemy_body_purple.png" id="2_yy0tx"]
 [ext_resource type="Texture2D" uid="uid://dtixumjnodxce" path="res://assets/enemy/enemy_stream_head_purple.png" id="3_iayjb"]
+[ext_resource type="Script" path="res://scripts/pathfinder.gd" id="4_ctfgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0kwa"]
 atlas = ExtResource("2_yy0tx")
@@ -97,6 +98,7 @@ height = 26.0
 [node name="LaserShooter" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 4
+wall_min_slide_angle = 0.0
 script = ExtResource("1_ihw53")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
@@ -116,8 +118,17 @@ position = Vector2(0, -5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2ien6")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
+[node name="Pathfinder" type="Node2D" parent="."]
+script = ExtResource("4_ctfgr")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Pathfinder"]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 20.0
+
+[node name="PathFindTime" type="Timer" parent="Pathfinder"]
+wait_time = 0.2
 autostart = true
+
+[connection signal="velocity_computed" from="Pathfinder/NavigationAgent2D" to="Pathfinder" method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="Pathfinder/PathFindTime" to="Pathfinder" method="_on_path_find_time_timeout"]

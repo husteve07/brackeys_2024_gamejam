@@ -90,10 +90,12 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_04nyw"]
-size = Vector2(27, 10)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dewvp"]
+radius = 4.5
+height = 26.0
 
 [node name="BlueSpiralLaserShooter" instance=ExtResource("1_nk67x")]
+wall_min_slide_angle = 0.261799
 
 [node name="Body" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_u68fl")
@@ -104,6 +106,8 @@ sprite_frames = SubResource("SpriteFrames_r38ij")
 frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(1, -5)
-rotation = 0.0
-shape = SubResource("RectangleShape2D_04nyw")
+shape = SubResource("CapsuleShape2D_dewvp")
+
+[node name="NavigationAgent2D" parent="Pathfinder" index="0"]
+navigation_layers = 5
+radius = 50.0

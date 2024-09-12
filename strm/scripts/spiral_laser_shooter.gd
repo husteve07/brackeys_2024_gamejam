@@ -33,6 +33,7 @@ var current_laser_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player = get_tree().get_nodes_in_group("player")[0]
 	var time_interval_between_bullets = total_shooting_time/num_of_lasers_to_shoot
 	internal_timer.connect("timeout", Callable(self, "spawn_laser_spiral"))
 	internal_timer.wait_time = time_interval_between_bullets;
@@ -85,5 +86,14 @@ func reset_shooter():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(delta):
+	if player.position.y > position.y:
+		z_index = 0
+	else:
+		z_index = 2
+	if player.position.x > position.x:
+		head.scale.x=-1
+		body.scale.x=-1
+	else:
+		head.scale.x = 1
+		body.scale.x= 1
