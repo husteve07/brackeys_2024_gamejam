@@ -21,8 +21,8 @@ func _process(delta):
 	position += direction * speed * delta
 
 	# Destroy the laser when it goes off-screen or out of bounds
-	if position.x < 0 or position.x > get_viewport_rect().size.x or position.y < 0 or position.y > get_viewport_rect().size.y:
-		queue_free()
+	#if position.x < 0 or position.x > get_viewport_rect().size.x or position.y < 0 or position.y > get_viewport_rect().size.y:
+		#queue_free()
 
 #*****************<helper functions>*****************
 func get_laser_name():
@@ -32,3 +32,8 @@ func get_laser_name():
 func get_laser_damage():
 	return damage
 #*****************</helper functions>*****************
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is TileMapLayer:
+		queue_free()

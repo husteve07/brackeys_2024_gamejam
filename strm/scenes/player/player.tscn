@@ -638,7 +638,7 @@ nodes/run/position = Vector2(340, 240)
 node_connections = [&"Transition", 0, &"idle", &"Transition", 1, &"run", &"output", 0, &"Transition"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_64qdf"]
-radius = 28.0
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aywu1"]
 radius = 100.0
@@ -692,6 +692,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
 position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_64qdf")
+debug_color = Color(0.640555, 0.524611, 1.92523e-07, 0.42)
 
 [node name="ParryBox" type="Area2D" parent="."]
 collision_layer = 0
