@@ -1,11 +1,123 @@
-[gd_scene load_steps=3 format=3 uid="uid://drlw5igjodtwi"]
+[gd_scene load_steps=17 format=3 uid="uid://drlw5igjodtwi"]
 
 [ext_resource type="Script" path="res://scripts/laser_shooter.gd" id="1_ihw53"]
-[ext_resource type="Texture2D" uid="uid://rmdclpkydn4c" path="res://assets/place_holder_assets/ph_enemy.png" id="2_c8704"]
+[ext_resource type="Texture2D" uid="uid://cw3fxdrvhanrk" path="res://assets/enemy/enemy_body_purple.png" id="2_yy0tx"]
+[ext_resource type="Texture2D" uid="uid://dtixumjnodxce" path="res://assets/enemy/enemy_stream_head_purple.png" id="3_iayjb"]
 
-[node name="LaserShooter" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0kwa"]
+atlas = ExtResource("2_yy0tx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m0j7"]
+atlas = ExtResource("2_yy0tx")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuav0"]
+atlas = ExtResource("2_yy0tx")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npj50"]
+atlas = ExtResource("2_yy0tx")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx4iy"]
+atlas = ExtResource("2_yy0tx")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ookep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0kwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m0j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuav0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npj50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx4iy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht3xo"]
+atlas = ExtResource("3_iayjb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thmjh"]
+atlas = ExtResource("3_iayjb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmpdp"]
+atlas = ExtResource("3_iayjb")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83xxh"]
+atlas = ExtResource("3_iayjb")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kxvd"]
+atlas = ExtResource("3_iayjb")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhlvr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht3xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thmjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmpdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83xxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kxvd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ien6"]
+radius = 4.5
+height = 26.0
+
+[node name="LaserShooter" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_ihw53")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_c8704")
-offset = Vector2(0, -32)
+[node name="Body" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_ookep")
+autoplay = "default"
+frame_progress = 0.36636
+
+[node name="Head" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_bhlvr")
+autoplay = "default"
+frame_progress = 0.819935
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2ien6")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

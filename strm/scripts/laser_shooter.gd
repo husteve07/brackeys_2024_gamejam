@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 class_name LaserShooter
 
 @export var firing_time_interval = 2.0
@@ -15,6 +15,9 @@ func _ready():
 	add_child(laser_spawn_timer)
 	laser_spawn_timer.start()
 
+func _physics_process(delta):
+	velocity.x += 1
+	move_and_slide()
 
 #desc: aquires player location and fires laser towards it
 func spawn_laser():
@@ -30,7 +33,7 @@ func spawn_laser():
 			return
 		
 		# Set position and direction
-		laser_instance.position = position  
+		laser_instance.position = position + (4*direction)
 		laser_instance.direction = direction  
 		
 		# Add the laser to the scene tree

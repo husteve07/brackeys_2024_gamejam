@@ -1,6 +1,6 @@
 extends LaserShooter
 
-@export var num_of_lasers_to_shoot=0
+@export var num_of_lasers_to_shoot=20
 @export var ccw = true
 @export var range_of_spiral_deg = 180
 
@@ -63,7 +63,7 @@ func spawn_laser_spiral():
 		laser_instance.direction = (player_position_snapshot - position).rotated(deg_to_rad(current_angle)).normalized()
 
 	# Set position and direction
-	laser_instance.position = position  
+	laser_instance.position = position + (4*laser_instance.direction)  
 	
 	# Add the laser to the scene tree
 	get_parent().add_child(laser_instance)

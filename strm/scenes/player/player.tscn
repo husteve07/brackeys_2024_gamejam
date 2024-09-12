@@ -643,11 +643,12 @@ radius = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_aywu1"]
 radius = 100.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3d28a"]
-size = Vector2(40, 12)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvplp"]
+radius = 5.0
+height = 36.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_uxivh")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_hv22u")]
@@ -703,6 +704,7 @@ position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_aywu1")
 
 [node name="PhysicalCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_3d28a")
+position = Vector2(0, -5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_uvplp")
 debug_color = Color(0.654385, 0.324795, 1, 0.42)

@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 var can_use_parry = true;
 var parry_cooldown_timer = Timer.new();
-const MAX_SPEED = 200
+const MAX_SPEED = 225
 var skill_buffer = []
 
 # Construct necessary components, setup signal callbacks and timers

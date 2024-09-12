@@ -1,10 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://osxlc6lj6jy4"]
+[gd_scene load_steps=10 format=3 uid="uid://osxlc6lj6jy4"]
 
 [ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="1_nxi2n"]
 [ext_resource type="Script" path="res://scripts/spiral_laser_shooter.gd" id="2_dymu5"]
+[ext_resource type="Texture2D" uid="uid://cd2e2w65mgyou" path="res://assets/enemy/enemy_special_head_purple.png" id="3_4vjin"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twttl"]
+atlas = ExtResource("3_4vjin")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsrav"]
+atlas = ExtResource("3_4vjin")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcgko"]
+atlas = ExtResource("3_4vjin")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3otpf"]
+atlas = ExtResource("3_4vjin")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlt0u"]
+atlas = ExtResource("3_4vjin")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jif6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twttl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsrav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcgko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3otpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlt0u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="SpiralLaserShooter" instance=ExtResource("1_nxi2n")]
 script = ExtResource("2_dymu5")
-num_of_lasers_to_shoot = 0
+num_of_lasers_to_shoot = 20
 ccw = true
 range_of_spiral_deg = 180
+
+[node name="Head" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_jif6w")
+frame_progress = 0.304703

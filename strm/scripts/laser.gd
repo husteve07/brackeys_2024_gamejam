@@ -1,7 +1,7 @@
 extends Node2D
 class_name Laser
 # Velocity of the laser
-@export var speed = 400
+@export var speed = 350
 @export var laser_name = "laser"
 @export var damage = 0
 
