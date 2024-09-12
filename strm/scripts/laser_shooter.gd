@@ -16,8 +16,9 @@ func _ready():
 	laser_spawn_timer.start()
 
 func _physics_process(delta):
-	velocity.x += 1
-	move_and_slide()
+	#velocity.x += 1
+	#move_and_slide()
+	pass
 
 #desc: aquires player location and fires laser towards it
 func spawn_laser():

@@ -16,7 +16,11 @@ func on_area_entered_player(other_area:Area2D):
 	if !other_area.get_collision_layer_value(1):
 		return
 	queue_free()
-
+	
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is TileMapLayer:
+		queue_free()
+		
 func _process(delta):
 	position += direction * speed * delta
 
@@ -32,8 +36,3 @@ func get_laser_name():
 func get_laser_damage():
 	return damage
 #*****************</helper functions>*****************
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is TileMapLayer:
-		queue_free()
