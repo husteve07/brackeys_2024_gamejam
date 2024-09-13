@@ -24,12 +24,15 @@ func _ready():
 	add_child(laser_spawn_timer)
 	laser_spawn_timer.start()
 	
+
+	
+	
+func set_invincibility_timer():
 	invincibility_timer = Timer.new()
 	invincibility_timer.wait_time = invincible_time
 	invincibility_timer.connect("timeout", Callable(self, "reset_take_damage"))
 	invincibility_timer.one_shot = true;
 	add_child(invincibility_timer)
-	
 	
 func reset_take_damage():
 	var skill_effects  = []

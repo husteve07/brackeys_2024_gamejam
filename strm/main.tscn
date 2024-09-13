@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="1_fbqhr"]
 [ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="1_hkcwq"]
 [ext_resource type="PackedScene" uid="uid://dtj0eynp2uvjx" path="res://scenes/environment/tilemap.tscn" id="1_m7h6d"]
-[ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="4_q7egq"]
+[ext_resource type="PackedScene" uid="uid://dcktk5vi51lrd" path="res://scenes/Lasers/complex_lasershooters/red_spiral_laser_shooter.tscn" id="4_nh21u"]
 [ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="7_88lfe"]
 
 [node name="Main" type="Node"]
@@ -22,16 +22,12 @@ position_smoothing_speed = 4.0
 [node name="Y-Sort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="LaserShooter2" parent="Y-Sort" instance=ExtResource("4_q7egq")]
-position = Vector2(537, 292)
+[node name="RedSpiralLaserShooter" parent="Y-Sort" instance=ExtResource("4_nh21u")]
+position = Vector2(85, 159)
+num_of_lasers_to_shoot = 20
 
-[node name="LaserShooter3" parent="Y-Sort" instance=ExtResource("4_q7egq")]
-position = Vector2(376, 292)
-
-[node name="LaserShooter4" parent="Y-Sort" instance=ExtResource("4_q7egq")]
-position = Vector2(162, 284)
-
-[node name="LaserShooter5" parent="Y-Sort" instance=ExtResource("4_q7egq")]
-position = Vector2(266, 280)
+[node name="RedSpiralLaserShooter2" parent="Y-Sort" instance=ExtResource("4_nh21u")]
+position = Vector2(163, 213)
+num_of_lasers_to_shoot = 20
 
 [node name="Cursor" parent="." instance=ExtResource("7_88lfe")]

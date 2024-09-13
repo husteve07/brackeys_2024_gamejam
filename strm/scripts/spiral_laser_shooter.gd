@@ -33,6 +33,9 @@ var current_laser_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$HitBox.area_entered.connect(on_entered_player_skill)
+
+	$HealthComponent.dead.connect(on_dead);
 	player = get_tree().get_nodes_in_group("player")[0]
 	var time_interval_between_bullets = total_shooting_time/num_of_lasers_to_shoot
 	internal_timer.connect("timeout", Callable(self, "spawn_laser_spiral"))
@@ -43,6 +46,9 @@ func _ready() -> void:
 	external_timer.wait_time = firing_time_interval
 	add_child(external_timer)
 	external_timer.start();
+	
+	set_invincibility_timer()
+	
 	pass # Replace with function body.
 
 
