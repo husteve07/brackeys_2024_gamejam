@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://8foeylokjwfd"]
+[gd_scene load_steps=3 format=3 uid="uid://8foeylokjwfd"]
 
 [ext_resource type="PackedScene" uid="uid://bch8gyomdwere" path="res://scenes/Skills/skill_base.tscn" id="1_1ne7b"]
+[ext_resource type="Script" path="res://scripts/AOE_skill.gd" id="2_b2hbj"]
 
 [node name="Skill_DoubleRed" instance=ExtResource("1_1ne7b")]
-skill_name = "FlameBurst"
+script = ExtResource("2_b2hbj")
+skill_name = "AOE_Skill"

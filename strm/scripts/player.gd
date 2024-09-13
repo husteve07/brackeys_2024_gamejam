@@ -1,4 +1,7 @@
 extends CharacterBody2D
+class_name Player
+
+signal activated_skill(skill: Skill)
 
 @export var parry_cool_down = 1;
 
@@ -106,14 +109,14 @@ func handle_keyboard_skill_input(event):
 		skill_buffer.insert(0, "red")
 		if(skill_buffer.size() > 2):
 			skill_buffer = skill_buffer.slice(0,2);
-		print(skill_buffer);
+		#print(skill_buffer);
 
 
 	if Input.is_action_just_pressed("blue_skill"):
 		skill_buffer.insert(0, "blue")
 		if(skill_buffer.size() > 2):
 			skill_buffer = skill_buffer.slice(0,2);
-		print(skill_buffer);
+		#print(skill_buffer);
 
 
 func _input(event):
@@ -134,9 +137,11 @@ func try_activate_skill() -> bool:
 		return false;
 	var skill_instance = $CombatComponent.skill_factory(skill_buffer) as Skill
 	if skill_instance == null:
+		#print('skill instance null')
 		return false;
 		
-	return skill_instance.activate();
+	#activated_skill.emit(skill_instance);
+	return $CombatComponent.activate_skill(skill_instance);
 
 
 func on_death():

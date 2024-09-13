@@ -18,6 +18,11 @@ func take_damage(damage: int):
 	#update UI 
 	current_health = clampi(current_health  - damage, 0, max_health)
 	update_health.emit(current_health);
-	print("current Health: " + str(current_health))
+	#print("current Health: " + str(current_health))
 	if current_health == 0:
 		dead.emit();
+
+func player_restore_health(restored_health):
+	current_health = clampi(current_health + restored_health, 0, max_health)
+	update_health.emit(current_health);
+	print("current Health: " + str(current_health))

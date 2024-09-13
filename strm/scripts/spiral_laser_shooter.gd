@@ -37,7 +37,6 @@ func _ready() -> void:
 	var time_interval_between_bullets = total_shooting_time/num_of_lasers_to_shoot
 	internal_timer.connect("timeout", Callable(self, "spawn_laser_spiral"))
 	internal_timer.wait_time = time_interval_between_bullets;
-	print(time_interval_between_bullets)
 	add_child(internal_timer)
 
 	external_timer.connect("timeout", Callable(self, "reset_shooter"))
@@ -53,8 +52,6 @@ func spawn_laser_spiral():
 	if laser_instance == null:
 		return
 
-
-	print(current_laser_count)
 	var current_angle = range_of_spiral_deg/num_of_lasers_to_shoot * current_laser_count
 	flag *= -1
 	#laser_instance.direction = (player_position_snapshot - position).rotated(-deg_to_rad(flag*current_angle)).normalized()
@@ -78,7 +75,6 @@ func spawn_laser_spiral():
 
 
 func reset_shooter():
-	print('hi')
 	var player = get_tree().get_nodes_in_group("player")[0]
 	player_position_snapshot = player.position
 	internal_timer.start()
