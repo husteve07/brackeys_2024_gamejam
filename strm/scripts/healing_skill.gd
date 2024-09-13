@@ -6,8 +6,9 @@ func _ready() -> void:
 	super._ready()
 	pass # Replace with function body.
 
-func activate():
-	return super.activate()
+func activate(mouse_position: Vector2):
+	return true
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

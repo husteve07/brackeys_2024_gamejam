@@ -6,4 +6,3 @@
 [node name="SkillDoubleBlue" instance=ExtResource("1_b4qjt")]
 script = ExtResource("2_h7fk4")
 skill_name = "Healing_skill"
-skill_damage = 0

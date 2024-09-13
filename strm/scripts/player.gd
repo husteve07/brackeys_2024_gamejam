@@ -93,7 +93,7 @@ func handle_mouse_input(event):
 			#print("parrying");
 			
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if(try_activate_skill()):
+			if(try_activate_skill(get_global_mouse_position())):
 				skill_buffer.clear();	
 				$CombatComponent.print_energy();
 					
@@ -131,7 +131,7 @@ func _input(event):
 # if the command buffer is size 2:
 #	instantiate the skill using the skill factory, by passing in the command buffer
 #	activate the skill
-func try_activate_skill() -> bool:
+func try_activate_skill(mouse_position : Vector2) -> bool:
 	if skill_buffer.size() != 2:
 		print("skill buffer not full");
 		return false;
@@ -141,7 +141,7 @@ func try_activate_skill() -> bool:
 		return false;
 		
 	#activated_skill.emit(skill_instance);
-	return $CombatComponent.activate_skill(skill_instance);
+	return $CombatComponent.activate_skill(skill_instance, mouse_position);
 
 
 func on_death():

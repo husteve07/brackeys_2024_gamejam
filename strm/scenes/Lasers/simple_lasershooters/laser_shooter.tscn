@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://drlw5igjodtwi"]
+[gd_scene load_steps=20 format=3 uid="uid://drlw5igjodtwi"]
 
 [ext_resource type="Script" path="res://scripts/laser_shooter.gd" id="1_ihw53"]
+[ext_resource type="PackedScene" uid="uid://c3mixyx047gv5" path="res://scenes/components/health_component.tscn" id="2_su3v2"]
 [ext_resource type="Texture2D" uid="uid://cw3fxdrvhanrk" path="res://assets/enemy/enemy_body_purple.png" id="2_yy0tx"]
 [ext_resource type="Texture2D" uid="uid://dtixumjnodxce" path="res://assets/enemy/enemy_stream_head_purple.png" id="3_iayjb"]
 [ext_resource type="Script" path="res://scripts/pathfinder.gd" id="4_ctfgr"]
@@ -95,11 +96,18 @@ animations = [{
 radius = 4.5
 height = 26.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57r5s"]
+size = Vector2(28.5, 64)
+
 [node name="LaserShooter" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 4
 wall_min_slide_angle = 0.0
 script = ExtResource("1_ihw53")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_su3v2")]
+current_health = 100
+max_health = 100
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
@@ -130,6 +138,14 @@ debug_enabled = true
 [node name="PathFindTime" type="Timer" parent="Pathfinder"]
 wait_time = 0.2
 autostart = true
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0.75, -31)
+shape = SubResource("RectangleShape2D_57r5s")
 
 [connection signal="velocity_computed" from="Pathfinder/NavigationAgent2D" to="Pathfinder" method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Pathfinder/PathFindTime" to="Pathfinder" method="_on_path_find_time_timeout"]

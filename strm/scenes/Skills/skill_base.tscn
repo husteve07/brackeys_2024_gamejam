@@ -1,7 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bch8gyomdwere"]
+[gd_scene load_steps=3 format=3 uid="uid://bch8gyomdwere"]
 
 [ext_resource type="Script" path="res://scripts/skill_base.gd" id="1_4r0gp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aali5"]
+radius = 50.0
 
 [node name="SkillBase" type="Node2D"]
 script = ExtResource("1_4r0gp")
 cool_down_seconds = 10
+skill_damage = 0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_aali5")

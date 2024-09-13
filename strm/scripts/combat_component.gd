@@ -32,7 +32,7 @@ func get_skill_timer(in_skill : Skill):
 	add_child(skill_timer)
 	return skill_timer
 
-func activate_skill(in_skill: Skill) -> bool:
+func activate_skill(in_skill: Skill, mouse_position: Vector2) -> bool:
 
 	var skill_timer = get_skill_timer(in_skill) as Timer;
 	if !skill_timer.is_stopped():
@@ -45,7 +45,8 @@ func activate_skill(in_skill: Skill) -> bool:
 	skill_timer.start()
 	#print(currently_cd_skill)
 	skill_activated.emit(in_skill);
-	return in_skill.activate()
+	add_child(in_skill);
+	return in_skill.activate(mouse_position)
 	
 
 
