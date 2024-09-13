@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bdi8noihdpgad"]
+[gd_scene load_steps=8 format=4 uid="uid://bdi8noihdpgad"]
 
 [ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="1_fbqhr"]
 [ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="1_hkcwq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="4_q7egq"]
 [ext_resource type="PackedScene" uid="uid://osxlc6lj6jy4" path="res://scenes/Lasers/complex_lasershooters/spiral_laser_shooter.tscn" id="5_ans17"]
 [ext_resource type="PackedScene" uid="uid://xxy7htypgna2" path="res://scenes/Lasers/complex_lasershooters/blue_spiral_laser_shooter.tscn" id="6_jxj1m"]
+[ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="7_88lfe"]
 
 [node name="Main" type="Node"]
 
@@ -43,3 +44,5 @@ position = Vector2(537, 292)
 
 [node name="BlueSpiralLaserShooter" parent="Y-Sort" instance=ExtResource("6_jxj1m")]
 position = Vector2(828, 263)
+
+[node name="Cursor" parent="." instance=ExtResource("7_88lfe")]

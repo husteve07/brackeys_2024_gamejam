@@ -111,3 +111,4 @@ shape = SubResource("CapsuleShape2D_dewvp")
 [node name="NavigationAgent2D" parent="Pathfinder" index="0"]
 navigation_layers = 5
 radius = 50.0
+debug_enabled = false

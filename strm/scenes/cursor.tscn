@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvulr2lwhxu8"]
+
+[ext_resource type="Script" path="res://scripts/change_cursor.gd" id="1_v2gt7"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_v2gt7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
