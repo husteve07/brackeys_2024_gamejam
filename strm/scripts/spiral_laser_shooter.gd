@@ -37,6 +37,7 @@ func _ready() -> void:
 
 	$HealthComponent.dead.connect(on_dead);
 	player = get_tree().get_nodes_in_group("player")[0]
+	player.activated_skill.connect(on_player_time_slow_activated);
 	var time_interval_between_bullets = total_shooting_time/num_of_lasers_to_shoot
 	internal_timer.connect("timeout", Callable(self, "spawn_laser_spiral"))
 	internal_timer.wait_time = time_interval_between_bullets;
@@ -68,6 +69,8 @@ func spawn_laser_spiral():
 
 	# Set position and direction
 	laser_instance.position = position + (4*laser_instance.direction)  
+	
+	laser_instance.spawned_while_skill_is_active = is_time_slow_active
 	
 	# Add the laser to the scene tree
 	get_parent().add_child(laser_instance)

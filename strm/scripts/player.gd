@@ -140,7 +140,7 @@ func try_activate_skill(mouse_position : Vector2) -> bool:
 		#print('skill instance null')
 		return false;
 		
-	#activated_skill.emit(skill_instance);
+	activated_skill.emit(skill_instance);
 	return $CombatComponent.activate_skill(skill_instance, mouse_position);
 
 

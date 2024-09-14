@@ -11,13 +11,17 @@ var RedLaserScene = preload("res://scenes/Lasers/red_laser.tscn")
 var BlueLaserScene = preload("res://scenes/Lasers/blue_laser.tscn")
 var player:Node2D
 var invincibility_timer : Timer
+var spawn_slow_laser_count_down : Timer
+var is_time_slow_active = false
+var skill_ref : TimeSlow
+
 
 func _ready():
 	#Spawn a laser every 2 seconds
 	$HitBox.area_entered.connect(on_entered_player_skill)
-
 	$HealthComponent.dead.connect(on_dead);
 	player = get_tree().get_nodes_in_group("player")[0]
+	player.activated_skill.connect(on_player_time_slow_activated);
 	var laser_spawn_timer = Timer.new()
 	laser_spawn_timer.wait_time = firing_time_interval
 	laser_spawn_timer.connect("timeout", Callable(self, "spawn_laser"))
@@ -25,6 +29,20 @@ func _ready():
 	laser_spawn_timer.start()
 	
 
+func restore_laser_speed():
+	is_time_slow_active = false;
+	
+
+func on_player_time_slow_activated(in_skill : Skill):
+	if in_skill as TimeSlow:
+		skill_ref = in_skill
+		spawn_slow_laser_count_down = Timer.new()
+		spawn_slow_laser_count_down.one_shot = true;
+		spawn_slow_laser_count_down.wait_time = in_skill.time_slow_time
+		spawn_slow_laser_count_down.connect("timeout", Callable(self, "restore_laser_speed"));
+		add_child(spawn_slow_laser_count_down)
+		is_time_slow_active = true
+		spawn_slow_laser_count_down.start();
 	
 	
 func set_invincibility_timer():
@@ -84,15 +102,19 @@ func _process(delta):
 #desc: aquires player location and fires laser towards it
 func spawn_laser():
 	if player:
+		
 		# Calculate the direction to the player
 		var direction = (player.position - position).normalized()
 		var laser_instance = choose_laser_type();
 		if laser_instance == null:
 			return
 		
+		
 		# Set position and direction
 		laser_instance.position = position + (4*direction)
 		laser_instance.direction = direction  
+		
+		laser_instance.spawned_while_skill_is_active = is_time_slow_active
 		
 		# Add the laser to the scene tree
 		get_parent().add_child(laser_instance)
