@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://drlw5igjodtwi"]
+[gd_scene load_steps=21 format=3 uid="uid://drlw5igjodtwi"]
 
 [ext_resource type="Script" path="res://scripts/laser_shooter.gd" id="1_ihw53"]
 [ext_resource type="PackedScene" uid="uid://c3mixyx047gv5" path="res://scenes/components/health_component.tscn" id="2_su3v2"]
@@ -99,6 +99,9 @@ height = 26.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57r5s"]
 size = Vector2(28.5, 64)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0atb4"]
+radius = 200.0
+
 [node name="LaserShooter" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 4
@@ -147,5 +150,18 @@ collision_mask = 4
 position = Vector2(0.75, -31)
 shape = SubResource("RectangleShape2D_57r5s")
 
+[node name="SearchRadius" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SearchRadius"]
+shape = SubResource("CircleShape2D_0atb4")
+debug_color = Color(0.826945, 0.621829, 1, 0.42)
+
+[node name="SearchTimer" type="Timer" parent="SearchRadius"]
+wait_time = 10.0
+
 [connection signal="velocity_computed" from="Pathfinder/NavigationAgent2D" to="Pathfinder" method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Pathfinder/PathFindTime" to="Pathfinder" method="_on_path_find_time_timeout"]
+[connection signal="body_entered" from="SearchRadius" to="Pathfinder" method="_on_search_radius_body_entered"]
+[connection signal="body_exited" from="SearchRadius" to="Pathfinder" method="_on_search_radius_body_exited"]
+[connection signal="timeout" from="SearchRadius/SearchTimer" to="Pathfinder" method="_on_search_timer_timeout"]
