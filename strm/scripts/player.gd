@@ -9,9 +9,11 @@ var can_use_parry = true;
 var parry_cooldown_timer = Timer.new();
 const MAX_SPEED = 225
 var skill_buffer = []
+var reset_position = Vector2.ZERO
 
 # Construct necessary components, setup signal callbacks and timers
 func _ready() -> void:
+	reset_position = position
 	$PlayerHitBox.area_entered.connect(on_hitbox_entered)
 	$HealthComponent.dead.connect(on_death)
 	setup_parry_cd_timer()
@@ -143,9 +145,7 @@ func try_activate_skill(mouse_position : Vector2) -> bool:
 	activated_skill.emit(skill_instance);
 	return $CombatComponent.activate_skill(skill_instance, mouse_position);
 
-
 func on_death():
 	print("player dead")
-	queue_free();
-	get_tree().quit();
+	position = reset_position;
 #***********************</Gameplay>*******************		

@@ -14,6 +14,7 @@ var visionflag:int = 0
 var original_position = Vector2.ZERO
 var new_position = Vector2.ZERO
 var rand = RandomNumberGenerator.new()
+var slow_coeff
 
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
@@ -28,6 +29,11 @@ func actor_setup():
 	new_position = original_position + Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius,wander_radius))
 
 func _physics_process(delta):
+	if agent.is_time_slow_active:
+		slow_coeff = agent.character_slow_coeff
+	else:
+		slow_coeff = 1.0
+		
 	if navigator.is_navigation_finished():
 		new_position = original_position + Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius,wander_radius))
 
@@ -37,7 +43,7 @@ func _physics_process(delta):
 	if navigator.avoidance_enabled:
 		navigator.set_velocity(current_agent_position.direction_to(next_path_position) * movement_speed)
 	else:
-		_on_navigation_agent_2d_velocity_computed(current_agent_position.direction_to(next_path_position) * movement_speed)
+		_on_navigation_agent_2d_velocity_computed(current_agent_position.direction_to(next_path_position) * movement_speed * slow_coeff)
 	agent.move_and_slide()
 
 func _on_path_find_time_timeout() -> void:
