@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://drlw5igjodtwi"]
+[gd_scene load_steps=22 format=3 uid="uid://drlw5igjodtwi"]
 
 [ext_resource type="Script" path="res://scripts/laser_shooter.gd" id="1_ihw53"]
 [ext_resource type="PackedScene" uid="uid://c3mixyx047gv5" path="res://scenes/components/health_component.tscn" id="2_su3v2"]
 [ext_resource type="Texture2D" uid="uid://cw3fxdrvhanrk" path="res://assets/enemy/enemy_body_purple.png" id="2_yy0tx"]
 [ext_resource type="Texture2D" uid="uid://dtixumjnodxce" path="res://assets/enemy/enemy_stream_head_purple.png" id="3_iayjb"]
+[ext_resource type="Texture2D" uid="uid://ciupcdd1gdd2r" path="res://assets/shadow.png" id="3_y3v83"]
 [ext_resource type="Script" path="res://scripts/pathfinder.gd" id="4_ctfgr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0kwa"]
@@ -111,6 +112,10 @@ script = ExtResource("1_ihw53")
 [node name="HealthComponent" parent="." instance=ExtResource("2_su3v2")]
 current_health = 100
 max_health = 100
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("3_y3v83")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
