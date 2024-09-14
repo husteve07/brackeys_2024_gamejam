@@ -5,6 +5,7 @@ var movement_speed: float = 50.0
 @onready var navigator: NavigationAgent2D = $NavigationAgent2D
 @onready var search_radius: Area2D = $"../SearchRadius"
 @onready var search_timer: Timer = $"../SearchRadius/SearchTimer"
+@onready var new_path_timer: Timer = $NewPathTimer
 
 @export var wander_radius:float = 200.0
 @export var detect_radius:int = 30
@@ -27,8 +28,8 @@ func actor_setup():
 	await get_tree().physics_frame
 	var position = agent.position
 	original_position = position
-	new_position = original_position + Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius,wander_radius))
-
+	wanderpath()
+	
 func _physics_process(delta):
 	if agent.is_time_slow_active:
 		slow_coeff = agent.character_slow_coeff
@@ -36,7 +37,7 @@ func _physics_process(delta):
 		slow_coeff = 1.0
 		
 	if navigator.is_navigation_finished():
-		new_position = original_position + Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius,wander_radius))
+		wanderpath()
 
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = navigator.get_next_path_position()
@@ -68,8 +69,17 @@ func _on_search_radius_body_exited(body: Node2D) -> void:
 
 func on_reset():
 	visionflag = 0
+	wanderpath()
+
+func wanderpath():
 	new_position = original_position + Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius,wander_radius))
+	new_path_timer.start()
 
 func _on_search_timer_timeout() -> void:
 	visionflag = 0
-	new_position = original_position + Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius,wander_radius))
+	wanderpath()
+
+
+func _on_new_path_timer_timeout() -> void:
+	if !navigator.is_navigation_finished():
+		wanderpath()
