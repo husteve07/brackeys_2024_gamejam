@@ -45,6 +45,6 @@ func take_damage(damage: int):
 		dead.emit();
 
 func player_restore_health(restored_health):
-	current_health = clampi(current_health + health_regen_amount, 0, max_health)
+	current_health = clampi(current_health + restored_health, 0, max_health)
 	update_health.emit(current_health);
 	#print("current Health: " + str(current_health))

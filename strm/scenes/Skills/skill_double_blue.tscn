@@ -7,3 +7,4 @@
 script = ExtResource("2_h7fk4")
 multiplier = 1000
 skill_name = "Healing_skill"
+cool_down_seconds = 1

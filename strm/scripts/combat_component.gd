@@ -11,6 +11,7 @@ signal skill_activated(skill: Skill)
 @export var blue_energy = 0
 @export var max_blue_energy = 5
 
+var current_skill_ref : Skill
 var currently_cd_skill : Dictionary #fuck dynamic typing
 
 var skill_double_blue = preload("res://scenes/Skills/skill_double_blue.tscn")
@@ -81,7 +82,7 @@ func has_enough_energy_to_activate(in_skill : Skill) -> bool:
 		"Healing_skill":
 			return try_use_blue_laser_energy(2)
 		"Time_Slow_Skill":
-			return try_use_blue_laser_energy(5) && try_use_red_laser_energy(5)
+			return (try_use_blue_laser_energy(5) && try_use_red_laser_energy(5))
 	return false
 
 #*************************<Energy Operations>*******************************

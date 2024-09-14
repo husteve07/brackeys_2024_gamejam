@@ -91,6 +91,8 @@ func reset_shooter():
 	pass
 
 func on_reset():
+	external_timer.stop()
+	internal_timer.stop()
 	position = reset_position
 	external_timer.start()
 	$HealthComponent.player_restore_health($HealthComponent.max_health)

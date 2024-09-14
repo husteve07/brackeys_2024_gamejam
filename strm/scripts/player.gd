@@ -10,6 +10,7 @@ var parry_cooldown_timer = Timer.new();
 const MAX_SPEED = 225
 var skill_buffer = []
 var reset_position = Vector2.ZERO
+var current_skill_reference: Skill
 # Construct necessary components, setup signal callbacks and timers
 func _ready() -> void:
 	reset_position = position
@@ -142,9 +143,11 @@ func try_activate_skill(mouse_position : Vector2) -> bool:
 	if skill_instance == null:
 		#print('skill instance null')
 		return false;
-		
-	activated_skill.emit(skill_instance);
-	return $CombatComponent.activate_skill(skill_instance, mouse_position);
+
+	if $CombatComponent.activate_skill(skill_instance, mouse_position):
+		activated_skill.emit(skill_instance);
+		return true
+	return false
 
 func on_death():
 	print("player dead")
