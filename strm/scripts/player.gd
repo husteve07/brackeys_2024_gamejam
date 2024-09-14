@@ -10,6 +10,7 @@ var parry_cooldown_timer = Timer.new();
 const MAX_SPEED = 225
 var skill_buffer = []
 var reset_position = Vector2.ZERO
+var clear = 0
 # Construct necessary components, setup signal callbacks and timers
 func _ready() -> void:
 	reset_position = position
@@ -84,21 +85,29 @@ func absorb_all_lasers_inside_parrybox():
 #	clears skill input buffer
 
 func handle_mouse_input(event):
-	if event is InputEventMouseButton && event.is_pressed():
-		
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			if !can_use_parry:
-				#print("parry on cooldown")
-				return;
-			absorb_all_lasers_inside_parrybox();
-			can_use_parry = false;
-			parry_cooldown_timer.start();
-			#print("parrying");
-			
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if(try_activate_skill(get_global_mouse_position())):
-				skill_buffer.clear();	
-				$CombatComponent.print_energy();
+	if event.is_pressed():
+		if event is InputEventKey:
+			if event.keycode == KEY_SPACE:
+				if !can_use_parry:
+					#print("parry on cooldown")
+					return;
+				absorb_all_lasers_inside_parrybox();
+				can_use_parry = false;
+				parry_cooldown_timer.start();
+				#print("parrying");
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				if(skill_buffer.size() >= 2):
+					if(try_activate_skill(get_global_mouse_position())):
+						$CombatComponent.print_energy();
+					clear = 1
+					skill_buffer.clear();	
+					print(skill_buffer)
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				if(skill_buffer.size() >= 2):
+					clear = 1
+					skill_buffer.clear();
+					print(skill_buffer)
 					
 #possible refactor
 #Keyboard skill input
@@ -109,16 +118,19 @@ func handle_mouse_input(event):
 
 func handle_keyboard_skill_input(event):
 	if Input.is_action_just_pressed("red_skill"):
-		skill_buffer.insert(0, "red")
-		if(skill_buffer.size() > 2):
-			skill_buffer = skill_buffer.slice(0,2);
+		if clear != 1:
+			if (skill_buffer.size() < 2):
+				skill_buffer.insert(0, "red")
+				print(skill_buffer)
+		clear = 0
 		#print(skill_buffer);
 
-
 	if Input.is_action_just_pressed("blue_skill"):
-		skill_buffer.insert(0, "blue")
-		if(skill_buffer.size() > 2):
-			skill_buffer = skill_buffer.slice(0,2);
+		if clear != 1:
+			if (skill_buffer.size()<2):
+				skill_buffer.insert(0, "blue")
+				print(skill_buffer)
+		clear = 0
 		#print(skill_buffer);
 
 
