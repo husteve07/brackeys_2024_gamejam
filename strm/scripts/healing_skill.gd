@@ -25,6 +25,7 @@ func _ready() -> void:
 func on_dash_timer_finished():
 	player_ref.velocity = og_velocity
 	should_dash = false
+	queue_free()
 
 func activate(mouse_position: Vector2):
 	super.activate(mouse_position);
