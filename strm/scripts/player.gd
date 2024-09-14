@@ -11,6 +11,7 @@ const MAX_SPEED = 225
 var skill_buffer = []
 var reset_position = Vector2.ZERO
 var current_skill_reference: Skill
+
 # Construct necessary components, setup signal callbacks and timers
 func _ready() -> void:
 	reset_position = position

@@ -2,8 +2,8 @@ extends Node
 
 #category: UI signals
 #Delegates for Energy Bar UI, Signature: float -> desc: current blue/red energy percentage
-signal update_blue_energy_gauge(blue_energy_percentage: float)
-signal update_red_energy_gauge(red_energy_percentage: float)
+signal update_blue_energy_gauge(blue_energy: int)
+signal update_red_energy_gauge(red_energy: int)
 signal skill_activated(skill: Skill)
 #default energy amount 
 @export var red_energy = 0
@@ -94,7 +94,7 @@ func try_use_red_laser_energy(cost: int) -> bool:
 	if(red_energy - cost >= 0):
 		red_energy -= cost;
 		#UI delegate: Red energy update red energy gauge
-		update_red_energy_gauge.emit(clampi(red_energy/max_red_energy, 0, max_red_energy))
+		update_red_energy_gauge.emit(red_energy)
 		return true;
 	return false;
 	
@@ -103,7 +103,7 @@ func try_use_blue_laser_energy(cost: int) -> bool:
 	if(blue_energy - cost >= 0):
 		blue_energy -= cost;
 		#UI delegate: Blue energy update red energy gauge
-		update_blue_energy_gauge.emit(clampi(blue_energy/max_blue_energy, 0, max_blue_energy))
+		update_blue_energy_gauge.emit(blue_energy)
 		return true;
 	return false;
 
@@ -116,11 +116,11 @@ func receive_laser_energy(receive_laser: Laser): #should return bool
 	if receive_laser.get_laser_name() == "BlueLaser":
 		blue_energy += 1;
 		blue_energy = clampi(blue_energy, 0, max_blue_energy)
-		update_blue_energy_gauge.emit(clampi(blue_energy/max_blue_energy, 0, max_blue_energy))
+		update_blue_energy_gauge.emit(blue_energy)
 	else:
 		red_energy += 1;
 		red_energy = clampi(red_energy, 0, max_red_energy)
-		update_red_energy_gauge.emit(clampi(red_energy/max_red_energy, 0, max_red_energy))
+		update_red_energy_gauge.emit(red_energy)
 		
 	print("current Energy: blue: " + str(blue_energy) + " red: " + str(red_energy));
 #****************************</Energy Operations>******************************

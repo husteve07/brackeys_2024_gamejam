@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=3 uid="uid://103iygerd4rn"]
+
+[ext_resource type="Texture2D" uid="uid://cusq2bty6s2is" path="res://assets/HUD/hp_bar_bg.png" id="1_gt4bx"]
+[ext_resource type="Texture2D" uid="uid://0ekucjvm5yx1" path="res://assets/bg.png" id="1_kg175"]
+[ext_resource type="Texture2D" uid="uid://btsqwlvqejoms" path="res://assets/HUD/hp_bar_fg.png" id="2_04gdt"]
+[ext_resource type="Texture2D" uid="uid://b0tb12o5un6vt" path="res://assets/HUD/hp_bar_fill.png" id="3_lyh8w"]
+[ext_resource type="Texture2D" uid="uid://gy34x8ijd5sk" path="res://assets/HUD/nrg_bar_bg.png" id="4_0i5wa"]
+[ext_resource type="Texture2D" uid="uid://d1acbg232xn4h" path="res://assets/HUD/blue_nrg.png" id="5_45gco"]
+[ext_resource type="Script" path="res://scripts/healthbar.gd" id="5_cjji0"]
+[ext_resource type="Texture2D" uid="uid://cdd4q0paw5awp" path="res://assets/HUD/red_nrg.png" id="5_q8bwf"]
+[ext_resource type="Texture2D" uid="uid://co7nlvom3dntm" path="res://assets/HUD/nrg_bar_fg.png" id="6_x3nnk"]
+[ext_resource type="Script" path="res://scripts/bluebar.gd" id="9_dicny"]
+[ext_resource type="Script" path="res://scripts/redbar.gd" id="11_mxrd3"]
+
+[node name="Canvas" type="Node2D"]
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="BG"]
+texture = ExtResource("1_kg175")
+centered = false
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HP" type="TextureProgressBar" parent="HUD"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 330.0
+offset_bottom = 58.0
+texture_under = ExtResource("1_gt4bx")
+texture_over = ExtResource("2_04gdt")
+texture_progress = ExtResource("3_lyh8w")
+script = ExtResource("5_cjji0")
+
+[node name="Blue" type="TextureProgressBar" parent="HUD"]
+offset_left = 10.0
+offset_top = 52.0
+offset_right = 145.0
+offset_bottom = 91.0
+max_value = 5.0
+texture_under = ExtResource("4_0i5wa")
+texture_over = ExtResource("6_x3nnk")
+texture_progress = ExtResource("5_45gco")
+script = ExtResource("9_dicny")
+
+[node name="Red" type="TextureProgressBar" parent="HUD"]
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 145.0
+offset_bottom = 119.0
+max_value = 5.0
+texture_under = ExtResource("4_0i5wa")
+texture_over = ExtResource("6_x3nnk")
+texture_progress = ExtResource("5_q8bwf")
+script = ExtResource("11_mxrd3")
