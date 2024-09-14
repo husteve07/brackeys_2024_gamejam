@@ -1052,7 +1052,6 @@ position = Vector2(0, -80)
 script = ExtResource("13_5twvu")
 
 [node name="SkillBuffer" type="Sprite2D" parent="SkillVisualComponent"]
-visible = false
 texture = ExtResource("14_5skge")
 hframes = 6
 
