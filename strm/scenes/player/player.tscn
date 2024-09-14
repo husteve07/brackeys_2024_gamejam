@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://tebn675nbfjj"]
+[gd_scene load_steps=53 format=3 uid="uid://tebn675nbfjj"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uxivh"]
 [ext_resource type="PackedScene" uid="uid://c3mixyx047gv5" path="res://scenes/components/health_component.tscn" id="2_hv22u"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://vdrylstwyneo" path="res://assets/player/run_bot.png" id="8_0t67x"]
 [ext_resource type="Texture2D" uid="uid://bjky7mhuf0ya1" path="res://assets/player/skill_top.png" id="10_ls6oi"]
 [ext_resource type="Texture2D" uid="uid://cawfnui8ekpb8" path="res://assets/player/shield_top.png" id="11_cpftv"]
+[ext_resource type="Script" path="res://scripts/skill_visual_component.gd" id="13_5twvu"]
+[ext_resource type="Texture2D" uid="uid://db6n8haq3fmj4" path="res://assets/player/skill_buffer.png" id="14_5skge"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jd74n"]
 atlas = ExtResource("4_vygvp")
@@ -1044,6 +1046,15 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParryBox"]
 position = Vector2(0, -32)
 shape = SubResource("CircleShape2D_aywu1")
+
+[node name="SkillVisualComponent" type="Node2D" parent="."]
+position = Vector2(0, -80)
+script = ExtResource("13_5twvu")
+
+[node name="SkillBuffer" type="Sprite2D" parent="SkillVisualComponent"]
+visible = false
+texture = ExtResource("14_5skge")
+hframes = 6
 
 [node name="PhysicalCollider" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
