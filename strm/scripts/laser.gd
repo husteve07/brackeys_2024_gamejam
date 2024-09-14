@@ -18,13 +18,14 @@ func _ready() -> void:
 	player_ref = get_tree().get_nodes_in_group("player")[0]
 	player_ref.activated_skill.connect(on_player_activate_skills);
 	bullet_slow_timer = Timer.new()
+
 	if(spawned_while_skill_is_active):
+		bullet_slow_timer.wait_time = slowed_time;
+		bullet_slow_timer.connect("timeout", Callable(self, "on_slow_time_end"));
+		bullet_slow_timer.one_shot = true
 		speed *= slowed_coeff
-	bullet_slow_timer.wait_time = slowed_time;
-	bullet_slow_timer.connect("timeout", Callable(self, "on_slow_time_end"));
-	bullet_slow_timer.one_shot = true
-	add_child(bullet_slow_timer)
-	bullet_slow_timer.start()
+		add_child(bullet_slow_timer)
+		bullet_slow_timer.start()
 
 
 func on_player_activate_skills(skill : Skill):

@@ -8,6 +8,18 @@ signal dead
 #Health component attributes
 @export var current_health = 100
 @export var max_health = 100
+@export var health_regen_threshold = 50
+@export var health_regen_countdown = 5;
+
+var health_timer: Timer
+
+func _ready() -> void:
+	health_timer = Timer.new()
+	health_timer.wait_time = health_regen_countdown
+	health_timer.connect("timeout", Callable(self, "on_health_regen_countdown_finish"))
+	add_child(health_timer);
+	health_timer.start()
+	pass
 
 # takes Damage
 # Input: damage taken: int
