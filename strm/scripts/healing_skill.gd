@@ -27,7 +27,7 @@ func on_dash_timer_finished():
 	should_dash = false
 
 func activate(mouse_position: Vector2):
-
+	super.activate(mouse_position);
 	og_velocity = player_ref.velocity;
 	direction = (mouse_position - player_ref.position).normalized()
 	dash_timer.start()

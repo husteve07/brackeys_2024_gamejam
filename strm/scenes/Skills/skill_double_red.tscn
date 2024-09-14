@@ -5,6 +5,7 @@
 
 [node name="Skill_DoubleRed" instance=ExtResource("1_1ne7b")]
 script = ExtResource("2_b2hbj")
+skill_last_duration = 1.5
 skill_name = "AOE_Skill"
 cool_down_seconds = 1
 skill_damage = 50
