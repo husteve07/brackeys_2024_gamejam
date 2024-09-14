@@ -25,6 +25,7 @@ func _ready() -> void:
 func on_health_regen_countdown_finish():
 	print("good job: old health: " + str(current_health));
 	current_health = clampi(current_health + health_regen_amount, 0, max_health)
+	update_health.emit(current_health);
 	print("\t\t\tnew health: " + str(current_health))
 
 # takes Damage
@@ -36,13 +37,14 @@ func take_damage(damage: int):
 	#update UI 
 	current_health = clampi(current_health  - damage, 0, max_health)
 	update_health.emit(current_health);
-	health_timer.start()
+	if(get_parent() as Player):
+		health_timer.start()
 	
 	#print("current Health: " + str(current_health))
 	if current_health == 0:
 		dead.emit();
 
 func player_restore_health(restored_health):
-	current_health = clampi(current_health + restored_health, 0, max_health)
+	current_health = clampi(current_health + health_regen_amount, 0, max_health)
 	update_health.emit(current_health);
 	#print("current Health: " + str(current_health))

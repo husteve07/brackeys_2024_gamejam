@@ -33,12 +33,12 @@ func on_player_activate_skills(skill : Skill):
 	if time_slow_skill :
 		speed *= time_slow_skill.slow_coeff
 		slowed_coeff = time_slow_skill.slow_coeff
-	slowed_time = skill.time_slow_time
-	bullet_slow_timer.wait_time = skill.time_slow_time;
-	bullet_slow_timer.connect("timeout", Callable(self, "on_slow_time_end"));
-	bullet_slow_timer.one_shot = true
-	add_child(bullet_slow_timer)
-	bullet_slow_timer.start()
+		slowed_time = skill.time_slow_time
+		bullet_slow_timer.wait_time = skill.time_slow_time;
+		bullet_slow_timer.connect("timeout", Callable(self, "on_slow_time_end"));
+		bullet_slow_timer.one_shot = true
+		add_child(bullet_slow_timer)
+		bullet_slow_timer.start()
 	
 
 func on_slow_time_end():

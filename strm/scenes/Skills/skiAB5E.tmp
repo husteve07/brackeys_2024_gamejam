@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dudc3655kgsl5"]
+
+[ext_resource type="PackedScene" uid="uid://bch8gyomdwere" path="res://scenes/Skills/skill_base.tscn" id="1_b4qjt"]
+[ext_resource type="Script" path="res://scripts/healing_skill.gd" id="2_h7fk4"]
+
+[node name="SkillDoubleBlue" instance=ExtResource("1_b4qjt")]
+script = ExtResource("2_h7fk4")
+skill_name = "Healing_skill"
