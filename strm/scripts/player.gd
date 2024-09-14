@@ -163,6 +163,7 @@ func on_death():
 	position = reset_position;
 	$CombatComponent.red_energy = 0
 	$CombatComponent.blue_energy = 0
+	skill_buffer.clear()
 	if $CombatComponent.skill_timer:
 		$CombatComponent.skill_timer.stop()
 	$HealthComponent.player_restore_health($HealthComponent.max_health)
