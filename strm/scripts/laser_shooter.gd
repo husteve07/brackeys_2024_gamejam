@@ -1,8 +1,12 @@
 extends CharacterBody2D
 class_name LaserShooter
 
+signal on_slow_is_active(slow_duration, slow_coefficient)
+
 @export var firing_time_interval = 2.0
 @export var invincible_time = 1.0
+@export var character_slow_coeff = 0.25
+
 @onready var head: AnimatedSprite2D = $Head
 @onready var body: AnimatedSprite2D = $Body
 
@@ -35,6 +39,7 @@ func restore_laser_speed():
 
 func on_player_time_slow_activated(in_skill : Skill):
 	if in_skill as TimeSlow:
+		
 		skill_ref = in_skill
 		spawn_slow_laser_count_down = Timer.new()
 		spawn_slow_laser_count_down.one_shot = true;
@@ -42,6 +47,7 @@ func on_player_time_slow_activated(in_skill : Skill):
 		spawn_slow_laser_count_down.connect("timeout", Callable(self, "restore_laser_speed"));
 		add_child(spawn_slow_laser_count_down)
 		is_time_slow_active = true
+		on_slow_is_active.emit(in_skill.time_slow_time, character_slow_coeff)
 		spawn_slow_laser_count_down.start();
 	
 	
