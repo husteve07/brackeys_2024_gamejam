@@ -18,6 +18,7 @@ var slow_coeff
 
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
+	player.get_node("HealthComponent").dead.connect(on_reset)
 	navigator.path_desired_distance = 4.0
 	navigator.target_desired_distance = 4.0
 	call_deferred("actor_setup")
@@ -64,6 +65,10 @@ func _on_search_radius_body_entered(body: Node2D) -> void:
 func _on_search_radius_body_exited(body: Node2D) -> void:
 	if body == player:
 		search_timer.start()
+
+func on_reset():
+	visionflag = 0
+	new_position = original_position + Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius,wander_radius))
 
 func _on_search_timer_timeout() -> void:
 	visionflag = 0
