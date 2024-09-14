@@ -5,4 +5,5 @@
 
 [node name="SkillDoubleBlue" instance=ExtResource("1_b4qjt")]
 script = ExtResource("2_h7fk4")
+multiplier = 1000
 skill_name = "Healing_skill"

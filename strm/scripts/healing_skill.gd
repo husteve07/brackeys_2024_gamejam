@@ -1,4 +1,7 @@
 extends Skill
+
+@export var multiplier = 1000
+
 var player_ref : Player
 var direction
 var should_dash = false
@@ -15,6 +18,7 @@ func _ready() -> void:
 	dash_timer.wait_time = dash_time
 	dash_timer.one_shot = true
 	dash_timer.connect("timeout", Callable(self, "on_dash_timer_finished"))
+	add_child(dash_timer)
 	pass # Replace with function body.
 
 
@@ -27,6 +31,8 @@ func activate(mouse_position: Vector2):
 	og_velocity = player_ref.velocity;
 	direction = (mouse_position - player_ref.position).normalized()
 	dash_timer.start()
+
+
 	should_dash = true
 
 	return true
@@ -35,7 +41,7 @@ func activate(mouse_position: Vector2):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if should_dash:
-		player_ref.velocity = direction * 1000;
+	if(should_dash):
+		player_ref.velocity = direction * multiplier;
 		player_ref.move_and_slide()
 	pass

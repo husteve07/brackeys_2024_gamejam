@@ -10,7 +10,6 @@ var parry_cooldown_timer = Timer.new();
 const MAX_SPEED = 225
 var skill_buffer = []
 var reset_position = Vector2.ZERO
-
 # Construct necessary components, setup signal callbacks and timers
 func _ready() -> void:
 	reset_position = position
@@ -22,9 +21,11 @@ func _ready() -> void:
 #***********************<Movement>***********************
 # grab user input and move player
 func _process(delta: float) -> void:
+
 	var movement_vector = get_movement_vector()
 	var direction = movement_vector.normalized()
 	velocity = direction*MAX_SPEED
+
 	move_and_slide()
 	
 func get_movement_vector():

@@ -30,6 +30,7 @@ func _ready():
 	player.activated_skill.connect(on_player_time_slow_activated);
 	player.get_node("HealthComponent").dead.connect(on_reset)
 	laser_spawn_timer = Timer.new()
+	#invincibility_timer = Timer.new()
 	laser_spawn_timer.wait_time = firing_time_interval
 	laser_spawn_timer.connect("timeout", Callable(self, "spawn_laser"))
 	add_child(laser_spawn_timer)
@@ -81,12 +82,15 @@ func reset_take_damage():
 
 func on_entered_player_skill(other_area: Area2D):
 	var player_skill = other_area.get_parent() as Skill;
+	if !invincibility_timer:
+		set_invincibility_timer()
 	if player_skill:
 		var damage = other_area.get_parent().skill_damage 
 		if damage > 0:
 			$HealthComponent.take_damage(other_area.get_parent().skill_damage);
-			invincibility_timer.start()
-
+			if($HealthComponent.current_health > 0):
+				invincibility_timer.start()
+	
 
 func on_dead():
 	#play death animation
