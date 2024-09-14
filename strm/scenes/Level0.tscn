@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c636sadhxcwd"]
+
+[ext_resource type="PackedScene" uid="uid://dtj0eynp2uvjx" path="res://scenes/environment/tilemap.tscn" id="1_pld4u"]
+[ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="2_lor1o"]
+[ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="3_0tjvh"]
+[ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="3_hyj77"]
+
+[node name="Node" type="Node"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_pld4u")]
+tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 2, 0, 2, 0, 3, 0, 0, 0, 0, 0, 255, 255, 2, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 3, 0, 0, 0, 255, 255, 0, 0, 2, 0, 2, 0, 3, 0, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_lor1o")]
+
+[node name="GameCamera" parent="Player" instance=ExtResource("3_0tjvh")]
+
+[node name="Y-Sort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Cursor" parent="." instance=ExtResource("3_hyj77")]

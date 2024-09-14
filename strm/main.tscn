@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://bdi8noihdpgad"]
+[gd_scene load_steps=10 format=4 uid="uid://bdi8noihdpgad"]
 
 [ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="1_fbqhr"]
 [ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="1_hkcwq"]
 [ext_resource type="PackedScene" uid="uid://dtj0eynp2uvjx" path="res://scenes/environment/tilemap.tscn" id="1_m7h6d"]
 [ext_resource type="PackedScene" uid="uid://beqs6tvi4cs6f" path="res://scenes/transition.tscn" id="4_mt3vl"]
 [ext_resource type="PackedScene" uid="uid://dcktk5vi51lrd" path="res://scenes/Lasers/complex_lasershooters/red_spiral_laser_shooter.tscn" id="4_nh21u"]
+[ext_resource type="PackedScene" uid="uid://c636sadhxcwd" path="res://scenes/Level0.tscn" id="5_5kucn"]
 [ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="7_88lfe"]
 [ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="7_hdl2q"]
 
@@ -26,6 +27,7 @@ position_smoothing_speed = 4.0
 
 [node name="Transition" parent="." instance=ExtResource("4_mt3vl")]
 position = Vector2(1026, 342)
+next_scene = ExtResource("5_5kucn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Transition"]
 position = Vector2(0, 32.5)
