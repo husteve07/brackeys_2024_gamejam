@@ -17,6 +17,7 @@ func _ready() -> void:
 	$Area2D.area_entered.connect(on_area_entered_player)
 	player_ref = get_tree().get_nodes_in_group("player")[0]
 	player_ref.activated_skill.connect(on_player_activate_skills);
+	player_ref.get_node("HealthComponent").dead.connect(on_reset)
 	bullet_slow_timer = Timer.new()
 
 	if(spawned_while_skill_is_active):
@@ -56,7 +57,10 @@ func on_area_entered_player(other_area:Area2D):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
 		queue_free()
-		
+
+func on_reset():
+	queue_free()
+	
 func _process(delta):
 	position += direction * speed * delta
 
