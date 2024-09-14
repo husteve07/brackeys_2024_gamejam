@@ -18,20 +18,22 @@ var invincibility_timer : Timer
 var spawn_slow_laser_count_down : Timer
 var is_time_slow_active = false
 var skill_ref : TimeSlow
-
+var laser_spawn_timer: Timer
+var reset_position
 
 func _ready():
+	reset_position = position
 	#Spawn a laser every 2 seconds
 	$HitBox.area_entered.connect(on_entered_player_skill)
 	$HealthComponent.dead.connect(on_dead);
 	player = get_tree().get_nodes_in_group("player")[0]
 	player.activated_skill.connect(on_player_time_slow_activated);
-	var laser_spawn_timer = Timer.new()
+	player.get_node("HealthComponent").dead.connect(on_reset)
+	laser_spawn_timer = Timer.new()
 	laser_spawn_timer.wait_time = firing_time_interval
 	laser_spawn_timer.connect("timeout", Callable(self, "spawn_laser"))
 	add_child(laser_spawn_timer)
 	laser_spawn_timer.start()
-	
 
 func restore_laser_speed():
 	is_time_slow_active = false;
@@ -88,10 +90,16 @@ func on_entered_player_skill(other_area: Area2D):
 
 func on_dead():
 	#play death animation
+	invincibility_timer.stop()
 	print("enemy death")
 	queue_free();
 	pass
 
+func on_reset():
+	position = reset_position
+	laser_spawn_timer.start()
+	$HealthComponent.player_restore_health($HealthComponent.max_health)
+	pass
 
 func _process(delta):
 	if player.position.y > position.y:

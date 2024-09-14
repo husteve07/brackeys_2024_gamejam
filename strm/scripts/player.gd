@@ -148,5 +148,9 @@ func try_activate_skill(mouse_position : Vector2) -> bool:
 func on_death():
 	print("player dead")
 	position = reset_position;
+	$CombatComponent.red_energy = 0
+	$CombatComponent.blue_energy = 0
+	if $CombatComponent.skill_timer:
+		$CombatComponent.skill_timer.stop()
 	$HealthComponent.player_restore_health($HealthComponent.max_health)
 #***********************</Gameplay>*******************		

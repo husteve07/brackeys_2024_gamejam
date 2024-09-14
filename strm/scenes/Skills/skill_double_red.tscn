@@ -7,4 +7,4 @@
 script = ExtResource("2_b2hbj")
 skill_name = "AOE_Skill"
 cool_down_seconds = 0
-skill_damage = 5
+skill_damage = 50

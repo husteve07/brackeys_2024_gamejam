@@ -33,11 +33,12 @@ var current_laser_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	reset_position = position
 	$HitBox.area_entered.connect(on_entered_player_skill)
-
 	$HealthComponent.dead.connect(on_dead);
 	player = get_tree().get_nodes_in_group("player")[0]
 	player.activated_skill.connect(on_player_time_slow_activated);
+	player.get_node("HealthComponent").dead.connect(on_reset)
 	var time_interval_between_bullets = total_shooting_time/num_of_lasers_to_shoot
 	internal_timer.connect("timeout", Callable(self, "spawn_laser_spiral"))
 	internal_timer.wait_time = time_interval_between_bullets;
@@ -89,6 +90,11 @@ func reset_shooter():
 	internal_timer.start()
 	pass
 
+func on_reset():
+	position = reset_position
+	external_timer.start()
+	$HealthComponent.player_restore_health($HealthComponent.max_health)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

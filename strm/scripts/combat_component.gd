@@ -16,7 +16,7 @@ var currently_cd_skill : Dictionary #fuck dynamic typing
 var skill_double_blue = preload("res://scenes/Skills/skill_double_blue.tscn")
 var skill_double_red = preload("res://scenes/Skills/skill_double_red.tscn")
 var skill_hollow_purple = preload("res://scenes/Skills/skill_hollow_purple.tscn")
-
+var skill_timer: Timer
 
 func _ready() -> void: 
 	pass
@@ -25,7 +25,7 @@ func _ready() -> void:
 func get_skill_timer(in_skill : Skill):
 	if in_skill.get_skill_name() in currently_cd_skill:
 		return currently_cd_skill[in_skill.get_skill_name()]
-	var skill_timer = Timer.new()
+	skill_timer = Timer.new()
 	skill_timer.wait_time = in_skill.cool_down_seconds
 	skill_timer.one_shot = true
 	currently_cd_skill[in_skill.get_skill_name()] = skill_timer

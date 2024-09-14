@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bdi8noihdpgad"]
+[gd_scene load_steps=9 format=4 uid="uid://bdi8noihdpgad"]
 
 [ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="1_fbqhr"]
 [ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="1_hkcwq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://beqs6tvi4cs6f" path="res://scenes/transition.tscn" id="4_mt3vl"]
 [ext_resource type="PackedScene" uid="uid://dcktk5vi51lrd" path="res://scenes/Lasers/complex_lasershooters/red_spiral_laser_shooter.tscn" id="4_nh21u"]
 [ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="7_88lfe"]
+[ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="7_hdl2q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2o38"]
 size = Vector2(20, 149)
@@ -42,3 +43,6 @@ position = Vector2(163, 213)
 num_of_lasers_to_shoot = 20
 
 [node name="Cursor" parent="." instance=ExtResource("7_88lfe")]
+
+[node name="LaserShooter" parent="." instance=ExtResource("7_hdl2q")]
+position = Vector2(475, 167)
