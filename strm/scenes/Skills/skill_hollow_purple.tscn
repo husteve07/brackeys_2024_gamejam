@@ -9,7 +9,7 @@ script = ExtResource("2_cg1lo")
 time_slow_time = 1.5
 slow_coeff = 0.25
 skill_name = "Time_Slow_Skill"
-cool_down_seconds = 7
+cool_down_seconds = 4
 
 [node name="SkillSFX" parent="." index="0"]
 stream = ExtResource("3_a8y16")

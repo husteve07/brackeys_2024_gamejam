@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://3hwg8b66mt81"]
+
+[ext_resource type="Script" path="res://scenes/UI/win_screen.gd" id="1_2fm86"]
+[ext_resource type="Texture2D" uid="uid://nis2n4us141c" path="res://assets/menu/win_screen.png" id="2_ldthc"]
+
+[node name="winscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2fm86")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575.85, 304.63)
+scale = Vector2(1.185, 1.185)
+texture = ExtResource("2_ldthc")
+
+[node name="RetryBUtton" type="Button" parent="Sprite2D"]
+texture_filter = 2
+offset_left = -64.035
+offset_top = 61.42
+offset_right = -14.035
+offset_bottom = 92.42
+scale = Vector2(2.475, 2.475)
+text = "Retry"
