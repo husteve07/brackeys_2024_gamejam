@@ -14,12 +14,14 @@ signal on_slow_is_active(slow_duration, slow_coefficient)
 var RedLaserScene = preload("res://scenes/Lasers/red_laser.tscn")
 var BlueLaserScene = preload("res://scenes/Lasers/blue_laser.tscn")
 var player:Node2D
+var gate:Node2D
 var invincibility_timer : Timer
 var spawn_slow_laser_count_down : Timer
 var is_time_slow_active = false
 var skill_ref : TimeSlow
 var laser_spawn_timer: Timer
 var reset_position
+var active = true
 
 func _ready():
 	reset_position = position
@@ -96,12 +98,17 @@ func on_dead():
 	#play death animation
 	invincibility_timer.stop()
 	print("enemy death")
-	queue_free();
+	visible = false
+	active = false
+	get_parent().defeated += 1
 	pass
 
 func on_reset():
+	visible = true
+	active = true
 	position = reset_position
 	laser_spawn_timer.start()
+	get_parent().defeated -= 1
 	$HealthComponent.player_restore_health($HealthComponent.max_health)
 	pass
 
@@ -120,22 +127,22 @@ func _process(delta):
 #desc: aquires player location and fires laser towards it
 func spawn_laser():
 	if player:
-		
-		# Calculate the direction to the player
-		var direction = (player.position - position).normalized()
-		var laser_instance = choose_laser_type();
-		if laser_instance == null:
-			return
-		
-		
-		# Set position and direction
-		laser_instance.position = position + (4*direction)
-		laser_instance.direction = direction  
-		
-		laser_instance.spawned_while_skill_is_active = is_time_slow_active
-		
-		# Add the laser to the scene tree
-		get_parent().add_child(laser_instance)
+		if active:
+			# Calculate the direction to the player
+			var direction = (player.position - position).normalized()
+			var laser_instance = choose_laser_type();
+			if laser_instance == null:
+				return
+			
+			
+			# Set position and direction
+			laser_instance.position = position + (4*direction)
+			laser_instance.direction = direction  
+			
+			laser_instance.spawned_while_skill_is_active = is_time_slow_active
+			
+			# Add the laser to the scene tree
+			get_parent().add_child(laser_instance)
 
 
 func choose_laser_type() -> Laser:

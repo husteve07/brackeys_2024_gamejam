@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bdi8noihdpgad"]
+[gd_scene load_steps=17 format=4 uid="uid://bdi8noihdpgad"]
 
 [ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="1_fbqhr"]
 [ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="1_hkcwq"]
@@ -6,10 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://beqs6tvi4cs6f" path="res://scenes/transition.tscn" id="4_mt3vl"]
 [ext_resource type="PackedScene" uid="uid://dcktk5vi51lrd" path="res://scenes/Lasers/complex_lasershooters/red_spiral_laser_shooter.tscn" id="4_nh21u"]
 [ext_resource type="PackedScene" uid="uid://c636sadhxcwd" path="res://scenes/Level0.tscn" id="5_5kucn"]
+[ext_resource type="PackedScene" uid="uid://c5luqhm6q1esc" path="res://scenes/enemy_manager.tscn" id="6_g8kjh"]
 [ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="7_88lfe"]
 [ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="7_hdl2q"]
 [ext_resource type="PackedScene" uid="uid://pk2j4jxgnqts" path="res://scenes/checkpoint.tscn" id="9_encpd"]
 [ext_resource type="PackedScene" uid="uid://103iygerd4rn" path="res://scenes/canvas.tscn" id="10_13750"]
+[ext_resource type="PackedScene" uid="uid://osxlc6lj6jy4" path="res://scenes/Lasers/complex_lasershooters/spiral_laser_shooter.tscn" id="11_ipi28"]
+[ext_resource type="PackedScene" uid="uid://xxy7htypgna2" path="res://scenes/Lasers/complex_lasershooters/blue_spiral_laser_shooter.tscn" id="13_x333p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2o38"]
 size = Vector2(20, 149)
@@ -41,20 +44,6 @@ next_scene = ExtResource("5_5kucn")
 position = Vector2(0, 32.5)
 shape = SubResource("RectangleShape2D_a2o38")
 
-[node name="Y-Sort" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="RedSpiralLaserShooter" parent="Y-Sort" instance=ExtResource("4_nh21u")]
-position = Vector2(85, 159)
-num_of_lasers_to_shoot = 20
-
-[node name="RedSpiralLaserShooter2" parent="Y-Sort" instance=ExtResource("4_nh21u")]
-position = Vector2(163, 213)
-num_of_lasers_to_shoot = 20
-
-[node name="LaserShooter" parent="Y-Sort" instance=ExtResource("7_hdl2q")]
-position = Vector2(475, 167)
-
 [node name="Cursor" parent="." instance=ExtResource("7_88lfe")]
 
 [node name="Checkpoint" parent="." instance=ExtResource("9_encpd")]
@@ -73,3 +62,20 @@ shape = SubResource("RectangleShape2D_48jxc")
 
 [node name="Canvas" parent="." instance=ExtResource("10_13750")]
 position = Vector2(705, 288)
+
+[node name="EnemyManager2" parent="." instance=ExtResource("6_g8kjh")]
+
+[node name="LaserShooter" parent="EnemyManager2" instance=ExtResource("7_hdl2q")]
+position = Vector2(809, 255)
+
+[node name="LaserShooter2" parent="EnemyManager2" instance=ExtResource("7_hdl2q")]
+position = Vector2(474, 119)
+
+[node name="SpiralLaserShooter" parent="EnemyManager2" instance=ExtResource("11_ipi28")]
+position = Vector2(74, 304)
+
+[node name="RedSpiralLaserShooter" parent="EnemyManager2" instance=ExtResource("4_nh21u")]
+position = Vector2(324, 333)
+
+[node name="BlueSpiralLaserShooter" parent="EnemyManager2" instance=ExtResource("13_x333p")]
+position = Vector2(166, 87)
