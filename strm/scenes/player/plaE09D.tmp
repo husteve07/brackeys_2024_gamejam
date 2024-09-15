@@ -1241,8 +1241,11 @@ script = ExtResource("1_uxivh")
 bus = &"SFX"
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_hv22u")]
-current_health = 100
-max_health = 100
+current_health = null
+max_health = null
+health_regen_countdown = null
+health_regen_amount = null
+iframe_time = null
 
 [node name="CombatComponent" parent="." instance=ExtResource("3_xt1u5")]
 

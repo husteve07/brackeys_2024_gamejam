@@ -69,11 +69,11 @@ func take_damage(damage: int):
 	#update UI 
 	#if(get_parent() as Player):
 		#get_parent().get_node("Animation Component").material.set_shader_parameter("flash_modifier", 1)
-	if(!can_take_damage):
+	if(!can_take_damage && (get_parent() as Player)):
 		print('damage_negated')
 		return;
-
-	start_i_frame_timer()
+	if(get_parent() as Player):
+		start_i_frame_timer()
 	current_health = clampi(current_health  - damage, 0, max_health)
 	update_health.emit(current_health);
 	if(get_parent() as Player):
@@ -82,7 +82,7 @@ func take_damage(damage: int):
 	#print("current Health: " + str(current_health))
 	if current_health == 0:
 		dead.emit();
-	
+	print(current_health)
 		
 func flash():
 	if(get_parent() as Player):
