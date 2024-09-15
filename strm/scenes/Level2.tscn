@@ -34,15 +34,34 @@ bus = &"Music"
 [node name="Cursor" parent="." instance=ExtResource("5_cp78s")]
 
 [node name="EnemyManager" parent="." instance=ExtResource("6_u0apq")]
-gate_threshold = 3
+gate_threshold = 4
 
 [node name="TileMapLayer" type="TileMapLayer" parent="EnemyManager"]
 tile_map_data = PackedByteArray("AAAPAP//AgADAAEAAAAPAAAAAgADAAEAAAAPAP7/AgADAAEAAAA=")
 tile_set = ExtResource("7_6woth")
 
+[node name="LaserShooter" parent="EnemyManager" instance=ExtResource("11_r5b8u")]
+position = Vector2(831, 258)
+
+[node name="SpiralLaserShooter" parent="EnemyManager" instance=ExtResource("12_leve8")]
+position = Vector2(833, -127)
+
+[node name="SpiralLaserShooter2" parent="EnemyManager" instance=ExtResource("12_leve8")]
+position = Vector2(449, 253)
+
+[node name="LaserShooter2" parent="EnemyManager" instance=ExtResource("11_r5b8u")]
+position = Vector2(449, -126)
+
 [node name="Transition" parent="." instance=ExtResource("7_3vewk")]
 
 [node name="Canvas" parent="." instance=ExtResource("8_2k7ay")]
+
+[node name="EnemyManager2" parent="." instance=ExtResource("6_u0apq")]
+position = Vector2(1025, 34)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="EnemyManager2"]
+tile_map_data = PackedByteArray("AAAFAPr/AgADAAUAAAAGAPr/AgAFAAUAAAA=")
+tile_set = ExtResource("7_6woth")
 
 [node name="Checkpoint" parent="." instance=ExtResource("10_3jc5r")]
 position = Vector2(1025, 34)
@@ -51,14 +70,17 @@ position = Vector2(1025, 34)
 position = Vector2(0, -14.5)
 shape = SubResource("RectangleShape2D_h1v74")
 
-[node name="LaserShooter" parent="." instance=ExtResource("11_r5b8u")]
-position = Vector2(831, 258)
-
 [node name="SpiralLaserShooter" parent="." instance=ExtResource("12_leve8")]
-position = Vector2(833, -127)
+position = Vector2(1662, 44)
 
-[node name="SpiralLaserShooter2" parent="." instance=ExtResource("12_leve8")]
-position = Vector2(449, 253)
+[node name="LaserShooter" parent="." instance=ExtResource("11_r5b8u")]
+position = Vector2(1408, -202)
 
 [node name="LaserShooter2" parent="." instance=ExtResource("11_r5b8u")]
-position = Vector2(449, -126)
+position = Vector2(1406, 326)
+
+[node name="SpiralLaserShooter2" parent="." instance=ExtResource("12_leve8")]
+position = Vector2(1635, -234)
+
+[node name="SpiralLaserShooter3" parent="." instance=ExtResource("12_leve8")]
+position = Vector2(1658, 320)
