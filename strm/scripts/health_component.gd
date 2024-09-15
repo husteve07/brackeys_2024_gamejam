@@ -48,9 +48,10 @@ func start_i_frame_timer():
 func on_i_frame_time_out():
 	flash_timer.stop()
 	print('stop');	
-	get_parent().get_node("Animation Component").material.set_shader_parameter("flash_modifier", 0)
-	can_take_damage = true
-	print('iframe over')
+	if(get_parent() as Player):
+		get_parent().get_node("Animation Component").material.set_shader_parameter("flash_modifier", 0)
+		can_take_damage = true
+		print('iframe over')
 
 
 func on_health_regen_countdown_finish():

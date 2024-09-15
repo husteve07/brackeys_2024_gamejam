@@ -14,4 +14,3 @@ cool_down_seconds = 1
 stream = ExtResource("3_fylnx")
 volume_db = -1.0
 pitch_scale = 1.1
-bus = &"SFX"

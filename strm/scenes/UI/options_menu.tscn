@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7w5sq5pnoo6o"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_jhuqs"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jhuqs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.501961, 0.501961, 0.321569)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_right = 256
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="musiclabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "Music"
+
+[node name="musicslider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="sfxlabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "SFX
+"
+
+[node name="sfxslider" type="HSlider" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
+texture_filter = 2
+layout_mode = 2
+text = "Back"
