@@ -11,6 +11,7 @@ cool_down_seconds = 10
 skill_damage = 0
 
 [node name="SkillSFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

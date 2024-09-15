@@ -53,6 +53,9 @@ radius = 12.0
 laser_name = "RedLaser"
 damage = 10
 
+[node name="AudioStreamPlayer" parent="." index="0"]
+bus = &"SFX"
+
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_quvp6")
 frame_progress = 0.830904

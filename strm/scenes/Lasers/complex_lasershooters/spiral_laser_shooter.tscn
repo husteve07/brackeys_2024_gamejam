@@ -55,7 +55,7 @@ ccw = true
 range_of_spiral_deg = 180
 
 [node name="AudioStreamPlayer" parent="." index="0"]
-volume_db = 0.0
+bus = &"SFX"
 
 [node name="Head" parent="." index="4"]
 sprite_frames = SubResource("SpriteFrames_jif6w")
