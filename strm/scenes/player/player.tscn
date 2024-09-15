@@ -20,6 +20,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_evoh6"]
 shader = ExtResource("4_2tuw8")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jd74n"]
 atlas = ExtResource("4_vygvp")
@@ -1249,18 +1251,22 @@ position = Vector2(0, -32)
 script = ExtResource("4_pc8c2")
 
 [node name="SHADOW" type="Sprite2D" parent="Animation Component"]
+use_parent_material = true
 texture = ExtResource("5_jjeny")
 offset = Vector2(5, 1)
 
 [node name="BOT" type="Sprite2D" parent="Animation Component"]
+use_parent_material = true
 texture = ExtResource("6_f4ow4")
 hframes = 8
 
 [node name="TOP" type="Sprite2D" parent="Animation Component"]
+use_parent_material = true
 texture = ExtResource("5_r2pom")
 hframes = 8
 
 [node name="CLOUDS" type="AnimatedSprite2D" parent="Animation Component"]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_echn3")
 autoplay = "default"
 frame_progress = 0.290752
