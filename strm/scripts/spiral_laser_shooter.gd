@@ -55,33 +55,33 @@ func _ready() -> void:
 
 
 func spawn_laser_spiral():
+	if active:
+		var laser_instance = choose_laser_type();
+		if laser_instance == null:
+			return
 
-	var laser_instance = choose_laser_type();
-	if laser_instance == null:
-		return
+		var current_angle = range_of_spiral_deg/num_of_lasers_to_shoot * current_laser_count
+		flag *= -1
+		#laser_instance.direction = (player_position_snapshot - position).rotated(-deg_to_rad(flag*current_angle)).normalized()
+		if(ccw):
+			laser_instance.direction = (player_position_snapshot - position).rotated(deg_to_rad(current_angle)).normalized()
+		else:
+			laser_instance.direction = (player_position_snapshot - position).rotated(deg_to_rad(current_angle)).normalized()
 
-	var current_angle = range_of_spiral_deg/num_of_lasers_to_shoot * current_laser_count
-	flag *= -1
-	#laser_instance.direction = (player_position_snapshot - position).rotated(-deg_to_rad(flag*current_angle)).normalized()
-	if(ccw):
-		laser_instance.direction = (player_position_snapshot - position).rotated(deg_to_rad(current_angle)).normalized()
-	else:
-		laser_instance.direction = (player_position_snapshot - position).rotated(deg_to_rad(current_angle)).normalized()
+		# Set position and direction
+		laser_instance.position = position + (4*laser_instance.direction)  
+		
+		laser_instance.spawned_while_skill_is_active = is_time_slow_active
+		
+		# Add the laser to the scene tree
+		get_parent().add_child(laser_instance)
+		
 
-	# Set position and direction
-	laser_instance.position = position + (4*laser_instance.direction)  
-	
-	laser_instance.spawned_while_skill_is_active = is_time_slow_active
-	
-	# Add the laser to the scene tree
-	get_parent().add_child(laser_instance)
-	
-
-	current_laser_count += 1;
-	if current_laser_count >= num_of_lasers_to_shoot:
-		internal_timer.stop()
-		current_laser_count = 0;
-		external_timer.start()
+		current_laser_count += 1;
+		if current_laser_count >= num_of_lasers_to_shoot:
+			internal_timer.stop()
+			current_laser_count = 0;
+			external_timer.start()
 
 
 func reset_shooter():
@@ -93,6 +93,8 @@ func reset_shooter():
 func on_reset():
 	external_timer.stop()
 	internal_timer.stop()
+	active = true
+	visible = true
 	position = reset_position
 	external_timer.start()
 	$HealthComponent.player_restore_health($HealthComponent.max_health)

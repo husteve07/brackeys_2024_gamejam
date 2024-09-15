@@ -167,6 +167,7 @@ debug_color = Color(0.826945, 0.621829, 1, 0.42)
 [node name="SearchTimer" type="Timer" parent="SearchRadius"]
 wait_time = 10.0
 
+[connection signal="dead" from="HealthComponent" to="Pathfinder" method="_on_health_component_dead"]
 [connection signal="velocity_computed" from="Pathfinder/NavigationAgent2D" to="Pathfinder" method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Pathfinder/PathFindTime" to="Pathfinder" method="_on_path_find_time_timeout"]
 [connection signal="timeout" from="Pathfinder/NewPathTimer" to="Pathfinder" method="_on_new_path_timer_timeout"]

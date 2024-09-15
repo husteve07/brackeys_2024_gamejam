@@ -6,6 +6,7 @@ var movement_speed: float = 50.0
 @onready var search_radius: Area2D = $"../SearchRadius"
 @onready var search_timer: Timer = $"../SearchRadius/SearchTimer"
 @onready var new_path_timer: Timer = $NewPathTimer
+@onready var health_component: Node = $"../HealthComponent"
 
 @export var wander_radius:float = 200.0
 @export var detect_radius:int = 30
@@ -16,6 +17,7 @@ var original_position = Vector2.ZERO
 var new_position = Vector2.ZERO
 var rand = RandomNumberGenerator.new()
 var slow_coeff
+var active = true
 
 func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
@@ -38,15 +40,15 @@ func _physics_process(delta):
 		
 	if navigator.is_navigation_finished():
 		wanderpath()
-
-	var current_agent_position: Vector2 = global_position
-	var next_path_position: Vector2 = navigator.get_next_path_position()
-	#agent.velocity = current_agent_position.direction_to(next_path_position) * movement_speed
-	if navigator.avoidance_enabled:
-		navigator.set_velocity(current_agent_position.direction_to(next_path_position) * movement_speed)
-	else:
-		_on_navigation_agent_2d_velocity_computed(current_agent_position.direction_to(next_path_position) * movement_speed * slow_coeff)
-	agent.move_and_slide()
+	if active:
+		var current_agent_position: Vector2 = global_position
+		var next_path_position: Vector2 = navigator.get_next_path_position()
+		#agent.velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+		if navigator.avoidance_enabled:
+			navigator.set_velocity(current_agent_position.direction_to(next_path_position) * movement_speed)
+		else:
+			_on_navigation_agent_2d_velocity_computed(current_agent_position.direction_to(next_path_position) * movement_speed * slow_coeff)
+		agent.move_and_slide()
 
 func _on_path_find_time_timeout() -> void:
 	if visionflag == 1:
@@ -69,7 +71,9 @@ func _on_search_radius_body_exited(body: Node2D) -> void:
 
 func on_reset():
 	visionflag = 0
+	active = true
 	wanderpath()
+	navigator.set_avoidance_layer_value(1, true)
 
 func wanderpath():
 	new_position = original_position + Vector2(randf_range(-wander_radius, wander_radius), randf_range(-wander_radius,wander_radius))
@@ -83,3 +87,7 @@ func _on_search_timer_timeout() -> void:
 func _on_new_path_timer_timeout() -> void:
 	if !navigator.is_navigation_finished():
 		wanderpath()
+
+func _on_health_component_dead() -> void:
+	active = false
+	navigator.set_avoidance_layer_value(1, false)
