@@ -248,6 +248,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_ihw53")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_su3v2")]
 current_health = 100

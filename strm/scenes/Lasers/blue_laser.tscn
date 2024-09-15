@@ -9,5 +9,8 @@ radius = 12.0
 laser_name = "BlueLaser"
 damage = 20
 
+[node name="AudioStreamPlayer" parent="." index="0"]
+bus = &"SFX"
+
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_8cn3b")

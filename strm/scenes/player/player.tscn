@@ -1238,6 +1238,7 @@ collision_mask = 7
 script = ExtResource("1_uxivh")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_hv22u")]
 current_health = 100
