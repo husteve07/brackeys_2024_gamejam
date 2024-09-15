@@ -106,7 +106,7 @@ skill_damage = 50
 
 [node name="SkillSFX" parent="." index="0"]
 stream = ExtResource("3_7ct0a")
-volume_db = 4.923
+volume_db = 13.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 z_index = 3

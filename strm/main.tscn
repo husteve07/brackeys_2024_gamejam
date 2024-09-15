@@ -28,6 +28,8 @@ size = Vector2(20, 145)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_hef3m")
+volume_db = -2.0
+autoplay = true
 bus = &"Music"
 
 [node name="TileMapLayer" parent="." instance=ExtResource("1_m7h6d")]
