@@ -1,0 +1,60 @@
+[gd_scene load_steps=14 format=4 uid="uid://ckjm1s5svxuve"]
+
+[ext_resource type="PackedScene" uid="uid://dtj0eynp2uvjx" path="res://scenes/environment/tilemap.tscn" id="1_v7g3d"]
+[ext_resource type="AudioStream" uid="uid://c43rk4hc6qesh" path="res://assets/sounds/final_loop.ogg" id="2_h0550"]
+[ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="3_x4ldk"]
+[ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="4_locnq"]
+[ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="5_2qs8n"]
+[ext_resource type="PackedScene" uid="uid://c5luqhm6q1esc" path="res://scenes/enemy_manager.tscn" id="6_iuekp"]
+[ext_resource type="PackedScene" uid="uid://beqs6tvi4cs6f" path="res://scenes/transition.tscn" id="7_0wn8e"]
+[ext_resource type="TileSet" uid="uid://bilpljmdpu0da" path="res://tilemap.tres" id="7_77vac"]
+[ext_resource type="PackedScene" uid="uid://osxlc6lj6jy4" path="res://scenes/Lasers/complex_lasershooters/spiral_laser_shooter.tscn" id="8_4nike"]
+[ext_resource type="PackedScene" uid="uid://103iygerd4rn" path="res://scenes/canvas.tscn" id="8_7j5uq"]
+[ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="9_pi241"]
+[ext_resource type="PackedScene" uid="uid://cslp6v5wpei00" path="res://scenes/Level2.tscn" id="11_iab5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qg8vi"]
+size = Vector2(82, 20)
+
+[node name="Node" type="Node"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_v7g3d")]
+tile_map_data = PackedByteArray("AAD/////AgADAAMAAAAAAP//AgAEAAEAAAAAAAAAAgAEAAEAAAD//wAAAgADAAMAAAD+//7/AgACAAAAAAD+////AgAEAAEAAAD+/wAAAgAEAAEAAAD+/wEAAgAEAAEAAAD///7/AgAGAAgAAAD//wEAAgAEAAEAAAAAAP7/AgAEAAEAAAAAAAEAAgAEAAEAAAAGAPv/AgAFAAgAAAAHAPv/AgAFAAgAAAAIAPv/AgAFAAgAAAAJAPv/AgAFAAgAAAAKAPv/AgAFAAgAAAALAPv/AgABAAgAAAAFAPv/AgAFAAgAAAAFAPf/AgACAAEAAAAFAPj/AgAGAAEAAAAFAPn/AgAGAAgAAAAFAPr/AgAEAAEAAAAGAPb/AgAEAAEAAAAGAPf/AgAEAAEAAAAGAPj/AgAEAAEAAAAGAPn/AgAEAAEAAAAGAPr/AgADAAMAAAAHAPb/AgADAAMAAAAHAPf/AgAEAAMAAAAHAPj/AgAEAAMAAAAHAPn/AgADAAMAAAAHAPr/AgAEAAEAAAAIAPb/AgAEAAEAAAAIAPf/AgAEAAEAAAAIAPj/AgACAAMAAAAIAPn/AgAEAAMAAAAIAPr/AgAEAAEAAAAJAPb/AgAFAAEAAAAJAPf/AgAGAAgAAAAJAPj/AgAEAAMAAAAJAPn/AgAEAAMAAAAJAPr/AgAEAAEAAAAKAPb/AgAGAAEAAAAKAPf/AgAGAAgAAAAKAPj/AgAEAAEAAAAKAPn/AgADAAMAAAAKAPr/AgAEAAEAAAALAPb/AgAEAAEAAAALAPf/AgAEAAEAAAALAPj/AgAEAAMAAAALAPn/AgACAAMAAAALAPr/AgADAAMAAAANAPf/AgACAAMAAAANAPj/AgACAAMAAAANAPn/AgAEAAEAAAANAPr/AgAEAAEAAAANAPv/AgACAAgAAAANAPb/AgACAAMAAAAOAPf/AgADAAEAAAAOAPj/AgADAAEAAAAOAPn/AgADAAEAAAAOAPr/AgADAAEAAAAOAPv/AgABAAEAAAAMAPb/AgAEAAEAAAAMAPf/AgADAAMAAAAMAPj/AgACAAMAAAAMAPn/AgAEAAMAAAAMAPr/AgAEAAEAAAAMAPv/AgACAAMAAAAJAPX/AgACAAgAAAAKAPX/AgABAAgAAAAGAPL/AgACAAAAAAAHAPL/AgAEAAIAAAAIAPL/AgAGAAgAAAAJAPP/AgACAAMAAAAKAPP/AgAEAAEAAAALAPP/AgADAAMAAAAMAPT/AgACAAMAAAANAPT/AgACAAMAAAAGAPP/AgAEAAEAAAAGAPT/AgACAAMAAAAHAPP/AgAEAAMAAAAHAPT/AgACAAMAAAAIAPP/AgACAAMAAAAIAPT/AgAEAAMAAAAJAPL/AgAGAAgAAAAJAPT/AgADAAMAAAAKAPL/AgAGAAgAAAAKAPT/AgACAAMAAAALAPL/AgAGAAgAAAALAPT/AgACAAMAAAAMAPL/AgAEAAIAAAAMAPP/AgAEAAMAAAANAPL/AgAEAAAAAAANAPP/AgAEAAEAAAAGAPX/AgACAAMAAAAHAPX/AgADAAMAAAAIAPX/AgACAAMAAAALAPX/AgADAAMAAAAMAPX/AgAEAAMAAAANAPX/AgACAAMAAAAGAPH/AgABAAAAAAAHAPH/AgABAAAAAAAIAPH/AgABAAAAAAAJAPH/AgABAAAAAAAKAPH/AgABAAAAAAALAPH/AgABAAAAAAAMAPH/AgABAAAAAAANAPH/AgABAAAAAAAOAPb/AgADAAEAAAAOAPX/AgADAAEAAAAOAPT/AgADAAEAAAAOAPP/AgADAAEAAAAOAPL/AgADAAEAAAAFAPb/AgACAAEAAAAFAPX/AgACAAEAAAAFAPT/AgACAAEAAAAFAPP/AgACAAEAAAAFAPL/AgACAAEAAAAFAPH/AgAAAAAAAAAOAPH/AgADAAAAAAD+//3/AgABAAAAAAD9//3/AgAAAAAAAAD9//7/AgACAAEAAAD9////AgACAAEAAAD9/wAAAgACAAEAAAD9/wEAAgACAAEAAAD9/wIAAgAAAAEAAAD+/wIAAgAFAAgAAAD//wIAAgAFAAgAAAAAAAIAAgAFAAgAAAACAP3/AgAGAAAAAAACAP7/AgAEAAAAAAACAP//AgAEAAEAAAACAAAAAgAEAAEAAAACAAEAAgAEAAEAAAACAAIAAgAFAAgAAAADAP3/AgADAAAAAAADAP7/AgADAAEAAAADAP//AgADAAEAAAADAAAAAgADAAEAAAADAAEAAgADAAEAAAADAAIAAgABAAEAAAD///3/AgAGAAEAAAABAP3/AgAFAAEAAAABAP7/AgAGAAgAAAAAAPz/AgAEAAEAAAAAAPv/AgAEAAEAAAAAAPr/AgADAAMAAAAAAP3/AgAEAAEAAAABAPr/AgAEAAEAAAACAPr/AgAEAAEAAAADAPr/AgAEAAEAAAAEAPr/AgAEAAEAAAAEAPv/AgAFAAgAAAADAPv/AgAFAAgAAAACAPv/AgAFAAgAAAABAPv/AgACAAgAAAD///z/AgACAAEAAAABAPz/AgADAAEAAAD///j/AgAAAAAAAAAAAPj/AgABAAAAAAABAPj/AgABAAAAAAACAPj/AgABAAAAAAADAPj/AgABAAAAAAAEAPj/AgABAAAAAAAEAPn/AgAGAAgAAAADAPn/AgAEAAIAAAACAPn/AgAGAAgAAAABAPn/AgAEAAIAAAAAAPn/AgACAAAAAAD///n/AgACAAEAAAD///r/AgACAAEAAAD///v/AgACAAEAAAAMAPz/AgAFAAkAAAALAPz/AgACAAEAAAANAPz/AgADAAEAAAABAAIAAgAFAAgAAAABAAEAAgADAAMAAAABAAAAAgADAAMAAAABAP//AgADAAMAAAA=")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_h0550")
+volume_db = -2.0
+autoplay = true
+bus = &"Music"
+
+[node name="Player" parent="." instance=ExtResource("3_x4ldk")]
+
+[node name="GameCamera" parent="Player" instance=ExtResource("4_locnq")]
+
+[node name="Cursor" parent="." instance=ExtResource("5_2qs8n")]
+
+[node name="EnemyManager" parent="." instance=ExtResource("6_iuekp")]
+gate_threshold = 3
+
+[node name="TileMapLayer" type="TileMapLayer" parent="EnemyManager"]
+tile_map_data = PackedByteArray("AAAMAPv/AgABAAAAAAA=")
+tile_set = ExtResource("7_77vac")
+
+[node name="SpiralLaserShooter" parent="EnemyManager" instance=ExtResource("8_4nike")]
+position = Vector2(484, -562)
+
+[node name="LaserShooter" parent="EnemyManager" instance=ExtResource("9_pi241")]
+position = Vector2(822, -762)
+
+[node name="LaserShooter2" parent="EnemyManager" instance=ExtResource("9_pi241")]
+position = Vector2(811, -398)
+
+[node name="Transition" parent="." instance=ExtResource("7_0wn8e")]
+position = Vector2(802, -199)
+next_scene = ExtResource("11_iab5v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transition"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_qg8vi")
+
+[node name="Canvas" parent="." instance=ExtResource("8_7j5uq")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cslp6v5wpei00"]
+[gd_scene load_steps=15 format=4 uid="uid://cslp6v5wpei00"]
 
 [ext_resource type="PackedScene" uid="uid://dtj0eynp2uvjx" path="res://scenes/environment/tilemap.tscn" id="1_pddn0"]
 [ext_resource type="AudioStream" uid="uid://c43rk4hc6qesh" path="res://assets/sounds/final_loop.ogg" id="2_8pqiw"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://pk2j4jxgnqts" path="res://scenes/checkpoint.tscn" id="10_3jc5r"]
 [ext_resource type="PackedScene" uid="uid://drlw5igjodtwi" path="res://scenes/Lasers/simple_lasershooters/laser_shooter.tscn" id="11_r5b8u"]
 [ext_resource type="PackedScene" uid="uid://osxlc6lj6jy4" path="res://scenes/Lasers/complex_lasershooters/spiral_laser_shooter.tscn" id="12_leve8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sibt8"]
+size = Vector2(135, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1v74"]
 size = Vector2(20, 215)
@@ -53,6 +56,11 @@ position = Vector2(449, 253)
 position = Vector2(449, -126)
 
 [node name="Transition" parent="." instance=ExtResource("7_3vewk")]
+position = Vector2(1408, -433)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transition"]
+position = Vector2(0.5, -8)
+shape = SubResource("RectangleShape2D_sibt8")
 
 [node name="Canvas" parent="." instance=ExtResource("8_2k7ay")]
 
