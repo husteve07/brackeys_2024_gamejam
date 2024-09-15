@@ -14,7 +14,7 @@ func _ready():
 
 # Function to handle Start button press
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_file("res://scenes/Tutorial.tscn")
 	pass
 
 # Function to handle Options button press
