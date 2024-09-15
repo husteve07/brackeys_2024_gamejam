@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpcjpw26emuoo"]
+[gd_scene load_steps=4 format=3 uid="uid://cpcjpw26emuoo"]
 
 [ext_resource type="PackedScene" uid="uid://bch8gyomdwere" path="res://scenes/Skills/skill_base.tscn" id="1_j4rnq"]
 [ext_resource type="Script" path="res://scripts/time_slow_skill.gd" id="2_cg1lo"]
+[ext_resource type="AudioStream" uid="uid://rn1yscmk7gjs" path="res://assets/sounds/time_slow.ogg" id="3_a8y16"]
 
 [node name="SkillHollowPurple" instance=ExtResource("1_j4rnq")]
 script = ExtResource("2_cg1lo")
-time_slow_time = 1
+time_slow_time = 2
 slow_coeff = 0.25
 skill_name = "Time_Slow_Skill"
+
+[node name="SkillSFX" parent="." index="0"]
+stream = ExtResource("3_a8y16")

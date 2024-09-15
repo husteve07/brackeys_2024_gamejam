@@ -5,6 +5,10 @@ class_name Laser
 @export var speed = 350
 @export var laser_name = "laser"
 @export var damage = 0
+
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+
 var player_ref: Player
 var time_slowed= 0 ;
 var bullet_slow_timer;

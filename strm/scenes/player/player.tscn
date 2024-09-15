@@ -981,6 +981,8 @@ y_sort_enabled = true
 collision_mask = 7
 script = ExtResource("1_uxivh")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [node name="HealthComponent" parent="." instance=ExtResource("2_hv22u")]
 current_health = 100
 max_health = 100
@@ -1061,5 +1063,3 @@ position = Vector2(0, -5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_uvplp")
 debug_color = Color(0.654385, 0.324795, 1, 0.42)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

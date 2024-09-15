@@ -1,5 +1,9 @@
 extends CharacterBody2D
 class_name Player
+const ABSORB_LASER = preload("res://assets/sounds/absorb_laser.ogg")
+const COMMAND_BLEU = preload("res://assets/sounds/command_bleu.ogg")
+const COMMAND_RED = preload("res://assets/sounds/command_red.ogg")
+const PLAYER_DEATH = preload("res://assets/sounds/player_death.ogg")
 
 signal activated_skill(skill: Skill)
 
@@ -11,6 +15,7 @@ const MAX_SPEED = 225
 var skill_buffer = []
 var reset_position = Vector2.ZERO
 var current_skill_reference: Skill
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 # Construct necessary components, setup signal callbacks and timers
 func _ready() -> void:
@@ -71,7 +76,10 @@ func absorb_all_lasers_inside_parrybox():
 		if laser == null:
 			return
 		$CombatComponent.receive_laser_energy(laser);
+		
 		laser.queue_free();
+	audio_stream_player.stream = ABSORB_LASER
+	audio_stream_player.play()
 #***********************</Collision>**************************
 
 
@@ -115,6 +123,8 @@ func handle_keyboard_skill_input(event):
 		if(skill_buffer.size() > 2):
 			skill_buffer = skill_buffer.slice(0,2);
 		#print(skill_buffer);
+		audio_stream_player.stream = COMMAND_RED
+		audio_stream_player.play()
 
 
 	if Input.is_action_just_pressed("blue_skill"):
@@ -122,6 +132,8 @@ func handle_keyboard_skill_input(event):
 		if(skill_buffer.size() > 2):
 			skill_buffer = skill_buffer.slice(0,2);
 		#print(skill_buffer);
+		audio_stream_player.stream = COMMAND_BLEU
+		audio_stream_player.play()
 
 
 func _input(event):
@@ -152,6 +164,8 @@ func try_activate_skill(mouse_position : Vector2) -> bool:
 
 func on_death():
 	print("player dead")
+	audio_stream_player.stream = PLAYER_DEATH
+	audio_stream_player.play()
 	position = reset_position;
 	$CombatComponent.red_energy = 0
 	$CombatComponent.blue_energy = 0
@@ -159,4 +173,6 @@ func on_death():
 	if $CombatComponent.skill_timer:
 		$CombatComponent.skill_timer.stop()
 	$HealthComponent.player_restore_health($HealthComponent.max_health)
+	
+	
 #***********************</Gameplay>*******************		

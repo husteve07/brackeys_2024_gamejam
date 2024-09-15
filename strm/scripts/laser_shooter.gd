@@ -2,6 +2,11 @@ extends CharacterBody2D
 class_name LaserShooter
 
 signal on_slow_is_active(slow_duration, slow_coefficient)
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+const ENEMY_LASER = preload("res://assets/sounds/enemy_laser.ogg")
+const ROBOT_DAMAGED = preload("res://assets/sounds/robot-damaged.ogg")
+const ROBOT_EXPLODE = preload("res://assets/sounds/robot_explode.ogg")
+const ROBOT_NOISE = preload("res://assets/sounds/robot_noise.ogg")
 
 @export var firing_time_interval = 2.0
 @export var invincible_time = 1.0
@@ -79,6 +84,9 @@ func reset_take_damage():
 	print(damage)
 		
 	$HealthComponent.take_damage(damage);
+	if $HealthComponent.current_health > 0: 
+		audio_stream_player.stream = ROBOT_DAMAGED
+		audio_stream_player.play()
 	invincibility_timer.start() 
 			
 
@@ -101,6 +109,9 @@ func on_dead():
 	visible = false
 	active = false
 	get_parent().defeated += 1
+	audio_stream_player
+	audio_stream_player.stream = ROBOT_EXPLODE
+	audio_stream_player.play()
 	pass
 
 func on_reset():
@@ -141,9 +152,11 @@ func spawn_laser():
 			
 			laser_instance.spawned_while_skill_is_active = is_time_slow_active
 			
+			
 			# Add the laser to the scene tree
 			get_parent().add_child(laser_instance)
 
+			laser_instance.audio_stream_player.play()
 
 func choose_laser_type() -> Laser:
 	# Randomly choose between red and blue laser

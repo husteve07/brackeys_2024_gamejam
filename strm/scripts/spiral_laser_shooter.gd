@@ -76,6 +76,7 @@ func spawn_laser_spiral():
 		# Add the laser to the scene tree
 		get_parent().add_child(laser_instance)
 		
+		laser_instance.audio_stream_player.play()
 
 		current_laser_count += 1;
 		if current_laser_count >= num_of_lasers_to_shoot:

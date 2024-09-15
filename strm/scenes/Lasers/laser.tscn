@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://mio4pmth65cv"]
+[gd_scene load_steps=11 format=3 uid="uid://mio4pmth65cv"]
 
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_3c8j0"]
+[ext_resource type="AudioStream" uid="uid://b6kw7disj4uv5" path="res://assets/sounds/enemy_laser.ogg" id="2_2pbrn"]
 [ext_resource type="Texture2D" uid="uid://cw4vf2kj1pph6" path="res://assets/projectiles/bullet.png" id="2_o6jcm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3cmbk"]
@@ -52,6 +53,10 @@ radius = 17.0
 [node name="LaserBaseClass" type="Node2D"]
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_3c8j0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2pbrn")
+volume_db = -40.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ldrdp")

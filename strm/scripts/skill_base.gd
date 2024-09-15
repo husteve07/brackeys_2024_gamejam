@@ -4,11 +4,14 @@ class_name Skill
 @export var cool_down_seconds = 0
 @export var skill_damage = 50
 
+@onready var skill_sfx: AudioStreamPlayer = $SkillSFX
+
 var tilemap: TileMapLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tilemap = get_tree().get_nodes_in_group("room")[0]
+	skill_sfx.play();
 
 func set_skill_activatable():
 	pass

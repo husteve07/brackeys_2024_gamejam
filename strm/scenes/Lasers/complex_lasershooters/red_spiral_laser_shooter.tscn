@@ -1,5 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcktk5vi51lrd"]
+[gd_scene load_steps=9 format=3 uid="uid://dcktk5vi51lrd"]
 
 [ext_resource type="PackedScene" uid="uid://osxlc6lj6jy4" path="res://scenes/Lasers/complex_lasershooters/spiral_laser_shooter.tscn" id="1_yy243"]
+[ext_resource type="Texture2D" uid="uid://cw3fxdrvhanrk" path="res://assets/enemy/enemy_body_purple.png" id="2_jejl6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0kwa"]
+atlas = ExtResource("2_jejl6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m0j7"]
+atlas = ExtResource("2_jejl6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuav0"]
+atlas = ExtResource("2_jejl6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npj50"]
+atlas = ExtResource("2_jejl6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx4iy"]
+atlas = ExtResource("2_jejl6")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ookep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0kwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m0j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuav0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npj50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx4iy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="RedSpiralLaserShooter" instance=ExtResource("1_yy243")]
+
+[node name="Body" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_ookep")
+frame_progress = 0.36636
+
+[node name="CollisionShape2D" parent="." index="4"]
+y_sort_enabled = false
+
+[node name="Pathfinder" parent="." index="5"]
+position = Vector2(0, 0)
+rotation = 0.0
+
+[connection signal="dead" from="HealthComponent" to="Pathfinder" method="_on_health_component_dead"]
+[connection signal="velocity_computed" from="Pathfinder/NavigationAgent2D" to="Pathfinder" method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="Pathfinder/PathFindTime" to="Pathfinder" method="_on_path_find_time_timeout"]
+[connection signal="timeout" from="Pathfinder/NewPathTimer" to="Pathfinder" method="_on_new_path_timer_timeout"]
+[connection signal="body_entered" from="SearchRadius" to="Pathfinder" method="_on_search_radius_body_entered"]
+[connection signal="body_exited" from="SearchRadius" to="Pathfinder" method="_on_search_radius_body_exited"]
+[connection signal="timeout" from="SearchRadius/SearchTimer" to="Pathfinder" method="_on_search_timer_timeout"]

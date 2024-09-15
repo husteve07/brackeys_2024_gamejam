@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dudc3655kgsl5"]
+[gd_scene load_steps=4 format=3 uid="uid://dudc3655kgsl5"]
 
 [ext_resource type="PackedScene" uid="uid://bch8gyomdwere" path="res://scenes/Skills/skill_base.tscn" id="1_b4qjt"]
 [ext_resource type="Script" path="res://scripts/healing_skill.gd" id="2_h7fk4"]
+[ext_resource type="AudioStream" uid="uid://dimagyhl1wy7p" path="res://assets/sounds/dash.ogg" id="3_fylnx"]
 
 [node name="SkillDoubleBlue" instance=ExtResource("1_b4qjt")]
 script = ExtResource("2_h7fk4")
 multiplier = 1000
 skill_name = "Healing_skill"
 cool_down_seconds = 1
+
+[node name="SkillSFX" parent="." index="0"]
+stream = ExtResource("3_fylnx")
+volume_db = -18.0
+pitch_scale = 1.23
