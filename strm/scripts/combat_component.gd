@@ -35,19 +35,24 @@ func get_skill_timer(in_skill : Skill):
 
 func activate_skill(in_skill: Skill, mouse_position: Vector2) -> bool:
 
+	add_child(in_skill);
 	var skill_timer = get_skill_timer(in_skill) as Timer;
 	if !skill_timer.is_stopped():
 		print(in_skill.get_skill_name() + " is on cooldown: " + str(skill_timer.time_left))
 		#print(currently_cd_skill)
+		in_skill.queue_free()
 		return false	
+	if !in_skill.activate(mouse_position):
+		in_skill.queue_free();
+		return false
 	if !has_enough_energy_to_activate(in_skill):
 		print("not enough energy")
+		in_skill.queue_free()
 		return false;	
 	skill_timer.start()
 	#print(currently_cd_skill)
 	skill_activated.emit(in_skill);
-	add_child(in_skill);
-	return in_skill.activate(mouse_position)
+	return true
 	
 
 

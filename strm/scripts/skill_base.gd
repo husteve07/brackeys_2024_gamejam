@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 	
 #dummy activate function
 func activate(mouse_position: Vector2):
+	print(str(mouse_position))
 	print("activating" + get_skill_name())
 	position = mouse_position
 	var tile_mouse_pos = tilemap.local_to_map(mouse_position)
