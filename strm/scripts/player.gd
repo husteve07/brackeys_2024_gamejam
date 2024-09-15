@@ -79,6 +79,7 @@ func absorb_all_lasers_inside_parrybox():
 		
 		laser.queue_free();
 	audio_stream_player.stream = ABSORB_LASER
+	audio_stream_player.volume_db = 7;
 	audio_stream_player.play()
 #***********************</Collision>**************************
 
@@ -124,6 +125,7 @@ func handle_keyboard_skill_input(event):
 			skill_buffer = skill_buffer.slice(0,2);
 		#print(skill_buffer);
 		audio_stream_player.stream = COMMAND_RED
+		audio_stream_player.volume_db = 1;
 		audio_stream_player.play()
 
 
@@ -133,6 +135,7 @@ func handle_keyboard_skill_input(event):
 			skill_buffer = skill_buffer.slice(0,2);
 		#print(skill_buffer);
 		audio_stream_player.stream = COMMAND_BLEU
+		audio_stream_player.volume_db = -1;
 		audio_stream_player.play()
 
 
