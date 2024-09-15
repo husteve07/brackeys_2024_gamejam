@@ -48,6 +48,9 @@ animations = [{
 
 [node name="RedSpiralLaserShooter" instance=ExtResource("1_yy243")]
 
+[node name="AudioStreamPlayer" parent="." index="0"]
+bus = &"Master"
+
 [node name="Body" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_ookep")
 frame_progress = 0.0

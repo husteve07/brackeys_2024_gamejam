@@ -63,8 +63,8 @@ shape = SubResource("RectangleShape2D_47r1q")
 [node name="Checkpoint2" parent="." instance=ExtResource("9_encpd")]
 position = Vector2(705, 288)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(705, 306.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint2"]
+position = Vector2(0, 18.5)
 shape = SubResource("RectangleShape2D_48jxc")
 
 [node name="Canvas" parent="." instance=ExtResource("10_13750")]
