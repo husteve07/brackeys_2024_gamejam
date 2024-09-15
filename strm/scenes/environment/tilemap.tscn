@@ -2,6 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://bilpljmdpu0da" path="res://tilemap.tres" id="1_arist"]
 
-[node name="TileMapLayer" type="TileMapLayer"]
+[node name="TileMapLayer" type="TileMapLayer" groups=["room"]]
 y_sort_enabled = true
 tile_set = ExtResource("1_arist")
