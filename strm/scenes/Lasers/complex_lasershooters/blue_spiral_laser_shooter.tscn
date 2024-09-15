@@ -97,9 +97,6 @@ height = 26.0
 [node name="BlueSpiralLaserShooter" instance=ExtResource("1_nk67x")]
 wall_min_slide_angle = 0.261799
 
-[node name="AudioStreamPlayer" parent="." index="0"]
-volume_db = 0.0
-
 [node name="Body" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_u68fl")
 frame_progress = 0.0
@@ -108,7 +105,7 @@ frame_progress = 0.0
 sprite_frames = SubResource("SpriteFrames_r38ij")
 frame_progress = 0.0
 
-[node name="CollisionShape2D" parent="." index="5"]
+[node name="CollisionShape2D" parent="." index="6"]
 shape = SubResource("CapsuleShape2D_dewvp")
 
 [node name="NavigationAgent2D" parent="Pathfinder" index="0"]

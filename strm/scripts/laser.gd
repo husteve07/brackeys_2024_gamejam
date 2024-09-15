@@ -7,7 +7,7 @@ class_name Laser
 @export var damage = 0
 
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 var player_ref: Player
 var time_slowed= 0 ;
@@ -18,6 +18,7 @@ var direction = Vector2.ZERO
 var spawned_while_skill_is_active = false;
 
 func _ready() -> void:
+	anim_player.active = false
 	$Area2D.area_entered.connect(on_area_entered_player)
 	player_ref = get_tree().get_nodes_in_group("player")[0]
 	player_ref.activated_skill.connect(on_player_activate_skills);
@@ -60,7 +61,11 @@ func on_area_entered_player(other_area:Area2D):
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is TileMapLayer:
-		queue_free()
+		bulletbreak()
+
+func bulletbreak():
+	anim_player.active = true
+	anim_player.play("die")
 
 func on_reset():
 	queue_free()
@@ -80,3 +85,7 @@ func get_laser_name():
 func get_laser_damage():
 	return damage
 #*****************</helper functions>*****************
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	queue_free()

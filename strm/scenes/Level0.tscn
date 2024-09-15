@@ -1,17 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://c636sadhxcwd"]
+[gd_scene load_steps=9 format=3 uid="uid://c636sadhxcwd"]
 
 [ext_resource type="PackedScene" uid="uid://dtj0eynp2uvjx" path="res://scenes/environment/tilemap.tscn" id="1_pld4u"]
+[ext_resource type="AudioStream" uid="uid://c43rk4hc6qesh" path="res://assets/sounds/final_loop.ogg" id="2_hlh3q"]
 [ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="2_lor1o"]
 [ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="3_0tjvh"]
 [ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="3_hyj77"]
+[ext_resource type="PackedScene" uid="uid://c5luqhm6q1esc" path="res://scenes/enemy_manager.tscn" id="5_jbfrg"]
+[ext_resource type="PackedScene" uid="uid://beqs6tvi4cs6f" path="res://scenes/transition.tscn" id="7_75idf"]
+[ext_resource type="PackedScene" uid="uid://103iygerd4rn" path="res://scenes/canvas.tscn" id="8_kbcnn"]
 
 [node name="Node" type="Node"]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("1_pld4u")]
 tile_map_data = PackedByteArray(0, 0, 255, 255, 255, 255, 2, 0, 2, 0, 3, 0, 0, 0, 0, 0, 255, 255, 2, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 3, 0, 0, 0, 255, 255, 0, 0, 2, 0, 2, 0, 3, 0, 0, 0)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hlh3q")
+volume_db = -2.0
+autoplay = true
+bus = &"Music"
+
 [node name="Player" parent="." instance=ExtResource("2_lor1o")]
 
 [node name="GameCamera" parent="Player" instance=ExtResource("3_0tjvh")]
 
 [node name="Cursor" parent="." instance=ExtResource("3_hyj77")]
+
+[node name="EnemyManager" parent="." instance=ExtResource("5_jbfrg")]
+
+[node name="Transition" parent="." instance=ExtResource("7_75idf")]
+
+[node name="Canvas" parent="." instance=ExtResource("8_kbcnn")]

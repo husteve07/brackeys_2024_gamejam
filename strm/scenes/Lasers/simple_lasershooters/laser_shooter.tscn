@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://drlw5igjodtwi"]
+[gd_scene load_steps=27 format=3 uid="uid://drlw5igjodtwi"]
 
 [ext_resource type="Script" path="res://scripts/laser_shooter.gd" id="1_ihw53"]
 [ext_resource type="PackedScene" uid="uid://c3mixyx047gv5" path="res://scenes/components/health_component.tscn" id="2_su3v2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtixumjnodxce" path="res://assets/enemy/enemy_stream_head_purple.png" id="3_iayjb"]
 [ext_resource type="Texture2D" uid="uid://ciupcdd1gdd2r" path="res://assets/shadow.png" id="3_y3v83"]
 [ext_resource type="Script" path="res://scripts/pathfinder.gd" id="4_ctfgr"]
+[ext_resource type="PackedScene" uid="uid://tdvr0enrs877" path="res://shaders/explode.tscn" id="6_i1w6x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0kwa"]
 atlas = ExtResource("2_yy0tx")
@@ -103,6 +104,143 @@ size = Vector2(28.5, 64)
 [sub_resource type="CircleShape2D" id="CircleShape2D_0atb4"]
 radius = 200.0
 
+[sub_resource type="Animation" id="Animation_ckgts"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_rin76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shadow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_e11y7"]
+resource_name = "alive"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shadow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7hcek"]
+_data = {
+"RESET": SubResource("Animation_rin76"),
+"alive": SubResource("Animation_e11y7"),
+"die": SubResource("Animation_ckgts")
+}
+
 [node name="LaserShooter" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 4
@@ -130,6 +268,12 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_bhlvr")
 autoplay = "default"
 frame_progress = 0.819935
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("6_i1w6x")]
+position = Vector2(0, -32)
+emitting = false
+amount = 800
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
@@ -168,6 +312,11 @@ debug_color = Color(0.826945, 0.621829, 1, 0.42)
 
 [node name="SearchTimer" type="Timer" parent="SearchRadius"]
 wait_time = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7hcek")
+}
 
 [connection signal="dead" from="HealthComponent" to="Pathfinder" method="_on_health_component_dead"]
 [connection signal="velocity_computed" from="Pathfinder/NavigationAgent2D" to="Pathfinder" method="_on_navigation_agent_2d_velocity_computed"]

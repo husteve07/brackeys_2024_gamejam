@@ -33,6 +33,7 @@ var current_laser_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	animation_player.active = false
 	reset_position = position
 	$HitBox.area_entered.connect(on_entered_player_skill)
 	$HealthComponent.dead.connect(on_dead);
@@ -95,7 +96,12 @@ func on_reset():
 	external_timer.stop()
 	internal_timer.stop()
 	active = true
-	visible = true
+	animation_player.stop()
+	animation_player.play("alive")
+	animation_player.active = false
+	head.visible = true
+	shadow.visible = true
+	body.visible = true
 	position = reset_position
 	external_timer.start()
 	$HealthComponent.player_restore_health($HealthComponent.max_health)

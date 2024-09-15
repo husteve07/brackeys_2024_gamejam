@@ -12,6 +12,7 @@ const ROBOT_NOISE = preload("res://assets/sounds/robot_noise.ogg")
 @export var invincible_time = 1.0
 @export var character_slow_coeff = 0.25
 
+@onready var shadow: Sprite2D = $Shadow
 @onready var head: AnimatedSprite2D = $Head
 @onready var body: AnimatedSprite2D = $Body
 
@@ -27,8 +28,10 @@ var skill_ref : TimeSlow
 var laser_spawn_timer: Timer
 var reset_position
 var active = true
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
+	animation_player.active = false
 	reset_position = position
 	#Spawn a laser every 2 seconds
 	$HitBox.area_entered.connect(on_entered_player_skill)
@@ -106,7 +109,9 @@ func on_dead():
 	#play death animation
 	invincibility_timer.stop()
 	print("enemy death")
-	visible = false
+	shadow.visible = false
+	animation_player.active = true
+	animation_player.play("die")
 	active = false
 	get_parent().defeated += 1
 	audio_stream_player
@@ -115,7 +120,9 @@ func on_dead():
 	pass
 
 func on_reset():
-	visible = true
+	animation_player.stop()
+	animation_player.play("alive")
+	animation_player.active = false
 	active = true
 	position = reset_position
 	laser_spawn_timer.start()

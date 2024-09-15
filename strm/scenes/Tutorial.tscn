@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=4 uid="uid://b3l6bw75b0msx"]
+
+[ext_resource type="PackedScene" uid="uid://dtj0eynp2uvjx" path="res://scenes/environment/tilemap.tscn" id="1_fovr7"]
+[ext_resource type="AudioStream" uid="uid://c43rk4hc6qesh" path="res://assets/sounds/final_loop.ogg" id="2_dtfej"]
+[ext_resource type="PackedScene" uid="uid://tebn675nbfjj" path="res://scenes/player/player.tscn" id="3_yfcta"]
+[ext_resource type="PackedScene" uid="uid://cw4xv1ejk3bln" path="res://scenes/game_camera.tscn" id="4_6b3py"]
+[ext_resource type="PackedScene" uid="uid://cvulr2lwhxu8" path="res://scenes/cursor.tscn" id="5_dotma"]
+[ext_resource type="PackedScene" uid="uid://c5luqhm6q1esc" path="res://scenes/enemy_manager.tscn" id="6_uo1qa"]
+[ext_resource type="PackedScene" uid="uid://beqs6tvi4cs6f" path="res://scenes/transition.tscn" id="7_c820y"]
+
+[node name="Node" type="Node"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_fovr7")]
+tile_map_data = PackedByteArray("AAD/////AgADAAMAAAAAAP//AgADAAMAAAAAAAAAAgADAAMAAAD//wAAAgADAAMAAAABAP7/AgADAAMAAAAAAP7/AgADAAMAAAD///7/AgADAAMAAAD+//7/AgADAAMAAAD+////AgADAAMAAAD+/wAAAgADAAMAAAD+/wEAAgAFAAgAAAD//wEAAgAFAAgAAAAAAAEAAgAFAAgAAAABAP//AgADAAMAAAABAAAAAgADAAMAAAABAAEAAgAFAAgAAAD+//3/AgAGAAgAAAD///3/AgAGAAgAAAAAAP3/AgAGAAgAAAABAP3/AgAGAAgAAAD+//z/AgAFAAAAAAD///z/AgABAAAAAAAAAPz/AgABAAAAAAABAPz/AgAGAAAAAAD9//z/AgAAAAAAAAACAPz/AgADAAAAAAD9//3/AgACAAEAAAD9//7/AgACAAEAAAD9////AgACAAEAAAD9/wAAAgACAAEAAAACAP3/AgADAAEAAAACAP7/AgAFAAEAAAACAP//AgAGAAgAAAACAAAAAgACAAgAAAD9/wEAAgAAAAEAAAACAAEAAgABAAEAAAADAAAAAgAFAAgAAAAEAAAAAgAFAAgAAAAFAAAAAgAFAAgAAAAGAAAAAgABAAgAAAADAP//AgAGAAgAAAAEAP//AgAGAAgAAAAFAP//AgAGAAgAAAAGAP//AgAGAAgAAAAGAP7/AgAGAAEAAAADAP7/AgABAAAAAAAEAP7/AgABAAAAAAAFAP7/AgABAAAAAAAGAAEAAgAAAAEAAAA=")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dtfej")
+volume_db = -2.0
+autoplay = true
+bus = &"Music"
+
+[node name="Player" parent="." instance=ExtResource("3_yfcta")]
+
+[node name="GameCamera" parent="Player" instance=ExtResource("4_6b3py")]
+
+[node name="Cursor" parent="." instance=ExtResource("5_dotma")]
+
+[node name="EnemyManager" parent="." instance=ExtResource("6_uo1qa")]
+
+[node name="Transition" parent="." instance=ExtResource("7_c820y")]

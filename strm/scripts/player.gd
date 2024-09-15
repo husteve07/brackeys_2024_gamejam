@@ -77,7 +77,7 @@ func absorb_all_lasers_inside_parrybox():
 			return
 		$CombatComponent.receive_laser_energy(laser);
 		
-		laser.queue_free();
+		laser.bulletbreak();
 	audio_stream_player.stream = ABSORB_LASER
 	audio_stream_player.volume_db = 7;
 	audio_stream_player.play()

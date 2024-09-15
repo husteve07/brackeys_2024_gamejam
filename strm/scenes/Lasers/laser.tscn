@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://mio4pmth65cv"]
+[gd_scene load_steps=15 format=3 uid="uid://mio4pmth65cv"]
 
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_3c8j0"]
 [ext_resource type="AudioStream" uid="uid://b6kw7disj4uv5" path="res://assets/sounds/enemy_laser.ogg" id="2_2pbrn"]
 [ext_resource type="Texture2D" uid="uid://cw4vf2kj1pph6" path="res://assets/projectiles/bullet.png" id="2_o6jcm"]
+[ext_resource type="PackedScene" uid="uid://tdvr0enrs877" path="res://shaders/explode.tscn" id="4_jjjlv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3cmbk"]
 atlas = ExtResource("2_o6jcm")
@@ -50,6 +51,67 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bgsi"]
 radius = 17.0
 
+[sub_resource type="Animation" id="Animation_mp6b6"]
+resource_name = "die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 0.0824693),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1hj4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ij4fx"]
+_data = {
+"RESET": SubResource("Animation_1hj4c"),
+"die": SubResource("Animation_mp6b6")
+}
+
 [node name="LaserBaseClass" type="Node2D"]
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_3c8j0")
@@ -71,4 +133,15 @@ collision_mask = 5
 shape = SubResource("CircleShape2D_7bgsi")
 debug_color = Color(0.731164, 0.472582, 0, 0.42)
 
+[node name="GPUParticles2D" parent="." instance=ExtResource("4_jjjlv")]
+emitting = false
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_ij4fx")
+}
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
