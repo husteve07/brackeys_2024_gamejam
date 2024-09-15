@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://tebn675nbfjj"]
+[gd_scene load_steps=63 format=3 uid="uid://tebn675nbfjj"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uxivh"]
 [ext_resource type="PackedScene" uid="uid://c3mixyx047gv5" path="res://scenes/components/health_component.tscn" id="2_hv22u"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://w8iqfn1ymde2" path="res://assets/player/dash_top.png" id="13_o5pyg"]
 [ext_resource type="Texture2D" uid="uid://db6n8haq3fmj4" path="res://assets/player/skill_buffer.png" id="14_5skge"]
 [ext_resource type="Texture2D" uid="uid://cigianoa6dfvp" path="res://assets/player/dash_bot.png" id="14_w2rdd"]
+[ext_resource type="Texture2D" uid="uid://bpr7uccm3412w" path="res://assets/player/bubble.png" id="16_k4fb8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_evoh6"]
 shader = ExtResource("4_2tuw8")
@@ -1307,6 +1308,11 @@ debug_color = Color(0.640555, 0.524611, 1.92523e-07, 0.42)
 [node name="ParryBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="ParryBox"]
+position = Vector2(0, -32)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("16_k4fb8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParryBox"]
 position = Vector2(0, -32)
