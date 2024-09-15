@@ -87,7 +87,7 @@ func has_enough_energy_to_activate(in_skill : Skill) -> bool:
 		"Healing_skill":
 			return try_use_red_laser_energy(2)
 		"Time_Slow_Skill":
-			return (try_use_blue_laser_energy(5) && try_use_red_laser_energy(5))
+			return (try_use_blue_laser_energy(1) && try_use_red_laser_energy(1))
 	return false
 
 #*************************<Energy Operations>*******************************
