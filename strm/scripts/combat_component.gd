@@ -62,9 +62,9 @@ func activate_skill(in_skill: Skill, mouse_position: Vector2) -> bool:
 func skill_factory(command) -> Skill:
 	match command:
 		["red", "red"]:
-			return skill_double_red.instantiate();
-		["blue", "blue"]:
 			return skill_double_blue.instantiate();
+		["blue", "blue"]:
+			return skill_double_red.instantiate();
 		["blue", "red"]:
 			return skill_hollow_purple.instantiate();
 		["red", "blue"]:
@@ -83,9 +83,9 @@ func print_energy():
 func has_enough_energy_to_activate(in_skill : Skill) -> bool:
 	match in_skill.get_skill_name():
 		"AOE_Skill":
-			return try_use_red_laser_energy(2)
-		"Healing_skill":
 			return try_use_blue_laser_energy(2)
+		"Healing_skill":
+			return try_use_red_laser_energy(2)
 		"Time_Slow_Skill":
 			return (try_use_blue_laser_energy(5) && try_use_red_laser_energy(5))
 	return false

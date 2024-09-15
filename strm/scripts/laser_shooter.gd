@@ -116,6 +116,7 @@ func on_dead():
 	get_parent().defeated += 1
 	audio_stream_player
 	audio_stream_player.stream = ROBOT_EXPLODE
+	audio_stream_player.volume_db = -4
 	audio_stream_player.play()
 	pass
 
