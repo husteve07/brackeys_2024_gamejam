@@ -1,8 +1,101 @@
-[gd_scene load_steps=4 format=3 uid="uid://8foeylokjwfd"]
+[gd_scene load_steps=18 format=3 uid="uid://8foeylokjwfd"]
 
 [ext_resource type="PackedScene" uid="uid://bch8gyomdwere" path="res://scenes/Skills/skill_base.tscn" id="1_1ne7b"]
 [ext_resource type="Script" path="res://scripts/AOE_skill.gd" id="2_b2hbj"]
 [ext_resource type="AudioStream" uid="uid://rct5vqum772h" path="res://assets/sounds/ltg.ogg" id="3_7ct0a"]
+[ext_resource type="Texture2D" uid="uid://rgv7wq0pf3ya" path="res://assets/player/lightning.png" id="4_vllox"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfrqg"]
+atlas = ExtResource("4_vllox")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj1ew"]
+atlas = ExtResource("4_vllox")
+region = Rect2(96, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqeh7"]
+atlas = ExtResource("4_vllox")
+region = Rect2(192, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxdto"]
+atlas = ExtResource("4_vllox")
+region = Rect2(288, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c4f7"]
+atlas = ExtResource("4_vllox")
+region = Rect2(384, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jegj7"]
+atlas = ExtResource("4_vllox")
+region = Rect2(480, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ewxo"]
+atlas = ExtResource("4_vllox")
+region = Rect2(576, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk5lj"]
+atlas = ExtResource("4_vllox")
+region = Rect2(672, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgsx6"]
+atlas = ExtResource("4_vllox")
+region = Rect2(768, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gu54"]
+atlas = ExtResource("4_vllox")
+region = Rect2(864, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrac6"]
+atlas = ExtResource("4_vllox")
+region = Rect2(960, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5232p"]
+atlas = ExtResource("4_vllox")
+region = Rect2(1056, 0, 96, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dhq25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfrqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj1ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqeh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxdto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c4f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jegj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ewxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk5lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgsx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gu54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrac6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5232p")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="Skill_DoubleRed" instance=ExtResource("1_1ne7b")]
 script = ExtResource("2_b2hbj")
@@ -14,3 +107,11 @@ skill_damage = 50
 [node name="SkillSFX" parent="." index="0"]
 stream = ExtResource("3_7ct0a")
 volume_db = 4.923
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+z_index = 3
+sprite_frames = SubResource("SpriteFrames_dhq25")
+autoplay = "default"
+frame = 11
+frame_progress = 1.0
+offset = Vector2(0, -16)

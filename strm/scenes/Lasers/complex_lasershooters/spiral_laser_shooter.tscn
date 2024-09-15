@@ -54,9 +54,9 @@ num_of_lasers_to_shoot = 20
 ccw = true
 range_of_spiral_deg = 180
 
-[node name="Head" parent="." index="3"]
+[node name="Head" parent="." index="4"]
 sprite_frames = SubResource("SpriteFrames_jif6w")
 frame_progress = 0.304703
 
-[node name="Pathfinder" parent="." index="5"]
+[node name="Pathfinder" parent="." index="6"]
 y_sort_enabled = true

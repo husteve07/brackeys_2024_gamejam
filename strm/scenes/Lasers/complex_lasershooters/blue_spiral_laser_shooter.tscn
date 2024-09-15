@@ -97,30 +97,17 @@ height = 26.0
 [node name="BlueSpiralLaserShooter" instance=ExtResource("1_nk67x")]
 wall_min_slide_angle = 0.261799
 
-[node name="Body" parent="." index="2"]
+[node name="Body" parent="." index="3"]
 sprite_frames = SubResource("SpriteFrames_u68fl")
 frame_progress = 0.0
 
-[node name="Head" parent="." index="3"]
+[node name="Head" parent="." index="4"]
 sprite_frames = SubResource("SpriteFrames_r38ij")
 frame_progress = 0.0
 
-[node name="CollisionShape2D" parent="." index="4"]
-y_sort_enabled = false
+[node name="CollisionShape2D" parent="." index="5"]
 shape = SubResource("CapsuleShape2D_dewvp")
-
-[node name="Pathfinder" parent="." index="5"]
-position = Vector2(0, 0)
-rotation = 0.0
 
 [node name="NavigationAgent2D" parent="Pathfinder" index="0"]
 navigation_layers = 5
 radius = 50.0
-
-[connection signal="dead" from="HealthComponent" to="Pathfinder" method="_on_health_component_dead"]
-[connection signal="velocity_computed" from="Pathfinder/NavigationAgent2D" to="Pathfinder" method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="timeout" from="Pathfinder/PathFindTime" to="Pathfinder" method="_on_path_find_time_timeout"]
-[connection signal="timeout" from="Pathfinder/NewPathTimer" to="Pathfinder" method="_on_new_path_timer_timeout"]
-[connection signal="body_entered" from="SearchRadius" to="Pathfinder" method="_on_search_radius_body_entered"]
-[connection signal="body_exited" from="SearchRadius" to="Pathfinder" method="_on_search_radius_body_exited"]
-[connection signal="timeout" from="SearchRadius/SearchTimer" to="Pathfinder" method="_on_search_timer_timeout"]

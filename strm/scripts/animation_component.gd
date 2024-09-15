@@ -8,6 +8,12 @@ var blendflag:int = 1
 
 func _ready() -> void:
 	anim_tree.animation_finished.connect(check)
+	player.activated_skill.connect(dash)
+	
+func dash(skill:Skill):
+	if skill.get_skill_name() == "Healing_skill":
+		anim_tree.set("parameters/Transition/transition_request", "dash")
+		blendflag = 0
 #Mostly temporary animation tree code
 func _process(delta: float) -> void:
 	if player.velocity.x > 0:
@@ -41,3 +47,4 @@ func blend(facing):
 		anim_tree.set("parameters/run/blend_position", facing)
 		anim_tree.set("parameters/shield/blend_position", facing)
 		anim_tree.set("parameters/skill/blend_position", facing)
+		anim_tree.set("parameters/dash/blend_position", facing)
