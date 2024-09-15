@@ -9,6 +9,8 @@ signal activated_skill(skill: Skill)
 
 @export var parry_cool_down = 1;
 
+var parry_sprite_timer;
+
 var can_use_parry = true;
 var parry_cooldown_timer = Timer.new();
 const MAX_SPEED = 225
@@ -22,6 +24,13 @@ func _ready() -> void:
 	reset_position = position
 	$PlayerHitBox.area_entered.connect(on_hitbox_entered)
 	$HealthComponent.dead.connect(on_death)
+
+	parry_sprite_timer = Timer.new();
+	parry_sprite_timer.wait_time = 0.25;
+	parry_sprite_timer.one_shot = true;
+	parry_sprite_timer.connect("timeout", Callable(self, "on_sprite_should_hide"))
+	add_child(parry_sprite_timer);
+	
 	setup_parry_cd_timer()
 	add_child(parry_cooldown_timer);
 
@@ -51,6 +60,11 @@ func setup_parry_cd_timer():
 
 func _on_timer_timeout():
 	can_use_parry = true;
+	
+	
+func on_sprite_should_hide():
+	$ParryBox/Sprite2D.visible = false
+
 #***********************</Timer Setup>***********************
 
 
@@ -103,6 +117,8 @@ func handle_mouse_input(event):
 				return;
 			absorb_all_lasers_inside_parrybox();
 			can_use_parry = false;
+			$ParryBox/Sprite2D.visible = true
+			parry_sprite_timer.start();
 			parry_cooldown_timer.start();
 			#print("parrying");
 			
