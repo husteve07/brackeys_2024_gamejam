@@ -28,6 +28,22 @@ func _ready() -> void:
 	pass
 
 
+func start_i_frame_timer():
+	i_frame_timer.start();
+	print('start i frame')
+	flash_timer.start()
+	print('start flashing')
+
+
+func on_i_frame_time_out():
+	flash_timer.stop()
+	print('stop');	
+	if(get_parent() as Player):
+		get_parent().get_node("Animation Component").material.set_shader_parameter("flash_modifier", 0)
+		can_take_damage = true
+		print('iframe over')
+
+
 func on_health_regen_countdown_finish():
 	print("good job: old health: " + str(current_health));
 	current_health = clampi(current_health + health_regen_amount, 0, max_health)
